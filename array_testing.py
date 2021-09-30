@@ -151,8 +151,4 @@ esta=False
 while esta:
     print("!")
 
-suma=0
-for x in range(2):
-    suma=suma+2
-suma2=suma-2
-print(suma2)
+

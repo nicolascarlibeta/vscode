@@ -80,7 +80,7 @@ def load_Array(array):
 def display_Array(array):
     for x in range(9):
         print(array[x], end=" ")
-
+""" 
 def bubble_Dazzle(array):
     lenght=len(array)-1
     lenght1=len(array)
@@ -92,13 +92,8 @@ def bubble_Dazzle(array):
                 array[x]=array[x]+array[x+1] #De esta forma, se intercambian los valores (10=10+4 14)
                 array[x+1]=array[x]-array[x+1] #El valor 4, se resta entre el 14 y el 4 #10
                 array[x]=array[x]-array[x+1] #El valor 14, se resta con el número anterior #4
-                
-    
-         
-        
-
-
-"""        
+"""         #el contador esta antes del ciclo del for, ya que si estuviera en esta linea, se ejecutaria como si fuese un else       
+      
     #b)
 def bubblelizer(array):
     lenght1=len(array)-1
@@ -109,7 +104,7 @@ def bubblelizer(array):
                 array[x]=array[x]+array[x+1] #De esta forma, se intercambian los valores (10=10+4 14)
                 array[x+1]=array[x]-array[x+1] #El valor 4, se resta entre el 14 y el 4 #10
                 array[x]=array[x]-array[x+1] #El valor 14, se resta con el número anterior #4
-"""            
+           
            
 
 def main_Menu():
@@ -131,7 +126,7 @@ def buttons(opcion):
         print("Se han cargado exitosamente")
     elif opcion==3:
         #bubble_Dazzle(array)
-        bubble_Dazzle(array)
+        bubblelizer(array)
         print("Se ha ordenado exitosamente")
 
 opcion=5
