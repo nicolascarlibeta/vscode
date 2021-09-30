@@ -1,0 +1,41 @@
+Cargar el vector(v)
+    para i desde 0 hasta 20
+        v[i]=azar(2,7)
+
+Ver vector(vec)
+    para i desde 0 hasta 20
+        mostrar(v[i],end=" ")
+    mostrar()
+
+Solicitar elemento a buscar
+    e=ingrese elemento a buscar
+    retornar e
+
+buscar elemento(v,e) # con para
+    esta=Falso
+    para i desde 0 hasta 20
+        Si v[i]==e
+            esta=Verdadero
+
+    retornar esta
+
+buscar elemento(v,e) # con mientras
+    i=0
+    esta=Falso
+    h=1
+    mientras (i<largo del vector) y not(esta)      
+        Si v[i]==e
+            esta=Verdadero
+        i=i+1
+        h=h+2
+    retornar esta ,h
+
+
+Cargar el vector(vec)
+mostrar vector(vec)
+ele=Solicitar elemento a buscar
+encontre, m = buscar elemento(vec,ele)
+Si encontre
+    Mostrar (El elemento {ele} SI está en el vector)
+si no
+    Mostrar (El elemento {ele} NO está en el vector)
