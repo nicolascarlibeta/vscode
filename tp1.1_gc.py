@@ -1,202 +1,123 @@
 
 
 
+#Trabajo Práctico 1.1 - Busqueda Binaria y Burbujeo
 
-#Trabajo Práctico 1
+#Calcular el medio y preguntar si coinciden
+#Sino, preguntar si es mayor o es menor
+#Dependiendo de lo que sea, se descartan los otros números
+#El medio sucede a otro
 
-import random, os
+#Buscamos el número 19
+
+
+#Calcular el medio: (p1+pf)//2
+
+#def binary_Search(array,busqueda):
+#    posicion1=0
+#    posicionf=len(array)-1
+#    termino=False
+#    while (posicion1<=posicionf) and termino==False:
+#        medium=posicion1+posicionf//2
+#        if busqueda==array[medium]:
+#        #Crear un flag o bandera, indicando un valor T o F
+#            termino=True
+#
+#        elif busqueda>array[medium]:
+#            posicion1=medium+1
+#    
+#        else:
+#            posicionf=medium-1
+#    
+#    return termino
+
+
+#binary_Search(array,busqueda)
+
 
 #1)
 
-#Un vector es como un cubo con una cierta capacidad de objetos que se pueden meter
+import random, os
 
-array=[0]*250 #Se define al vector
-arraymajor=0
 
-#Carga del Vector
-def load_Array(array):
-    for x in range(250): #Se itera un ciclo de 250 iteraciones
-        array[x]=random.randint(-100,100) #random carga un número entre un rango específico
+array=[1,3,5,7,9,11,13,15,17,19]
+busqueda=int(input("Buscar por número...: "))
 
-#Muestra por pantalla del vector
-def display_Array(array):
-    for x in range(250):
-        print(array[x], end=" ")
-        
-#Procesamiento del Vector       
-def isnegatin(array):
-    cantidad=0
-    cantidad2=0
-    cantidad3=0
-    for x in range(250):
-        if array[x]<0:
-            cantidad=cantidad+1
-        elif array[x]>0:
-            cantidad2=cantidad2+1
-        elif array[x]==0:
-            cantidad3=cantidad3+1
-    return cantidad,cantidad2,cantidad3
+def binary_Search(array,busqueda):
+    posicion1=0
+    posicionf=len(array)-1
+    termino=False
+    while (posicion1<=posicionf) and termino==False:
+        medium=(posicion1+posicionf)//2
+        if busqueda==array[medium]:
+        #Crear un flag o bandera, indicando un valor T o F
+            termino=True
 
-#Calculo del número mayor dentro del vector
-def major_Number(arraymajor):
-    for x in range(250):
-        if array[x]>arraymajor:
-            arraymajor=array[x]
-    return arraymajor
+        elif busqueda>array[medium]:
+            posicion1=medium+1 
+    
+        else:
+            posicionf=medium-1
 
-#Calculo de suma de números en posiciones impares
-def unpair_Numbers(array):
-    suma=0
-    for x in range(250):
-        if (x%2)==1:
-            array[x]
-            suma=suma+array[x]
-    print("La suma de los números en las posiciones impares es: ",suma)
+    if termino==True:
+        return medium
+    else:
+        return -1
 
-def main_Menu():
-    print(" "*39,"★★★ MENÚ PRINCIPAL★★★")
-    print()
-    print(" "*25,"1. Cargar 250 números aleatorios entre -100 y 100.")
-    print(" "*25,"2. Mostrar por pantalla los números contenidos.")
-    print(" "*25,"3. Calcular la cantidad de números negativos, positivos y ceros.")
-    print(" "*25,"4. Encontrar al número mas grande de todos.")
-    print(" "*25,"5. Sumar los números con posiciones impares.")
-    print(" "*25,"0. Salir.")
-    print()
-
-def buttons(opcion):
-    if opcion==1:
-        load_Array(array)  #Carga los números
-        print("Se han cargado exitosamente")
-    elif opcion==2:
-        display_Array(array)   #Muestra los números por pantalla
-        print()
-        print("Se han cargado exitosamente")
-    elif opcion==3:
-        cantidad,cantidad2,cantidad3=isnegatin(array)
-        print("Hay" ,cantidad, "cantidad de números negativos")
-        print("Hay" ,cantidad2, "cantidad de números positivos")
-        print("Hay" ,cantidad3, "cantidad de números iguales a cero")
-    elif opcion==4:
-        print("El número mas grande entre todos es el",major_Number(arraymajor))  #Muestra el número mas grande por pantalla
-    elif opcion==5:
-        unpair_Numbers(array)  #Muestra la suma de los números con posiciones impares
-
-opcion=5
-while opcion!=0:
-    os.system("cls")
-    main_Menu()
-    opcion=int(input("Seleccione una opción (1-5): "))
-    buttons(opcion)
-    input("Presione Inter para continuar: ")
-
+posicion=binary_Search(array,busqueda)
+print("La posición en la que se encuentra el",busqueda,"es " +str(posicion)+ "°")
+input()
 
 
 #2)
 
-array=[0]*10
+
+array=[0]*9
 
 def load_Array(array):
-   for x in range(10):
-       array[x]=input("Hola, por favor ingrese su apellido: ")
+    for x in range(9):
+        array[x]=random.randint(0,10)
 
 def display_Array(array):
-    for x in range(10):
+    for x in range(9):
         print(array[x], end=" ")
+""" 
+def bubble_Dazzle(array):
+    lenght=len(array)-1
+    lenght1=len(array)
+    for x in range(lenght): #1 - una pasada
+        #a)
+        lenght1=lenght1-1
+        for x in range(lenght1): #8
+            if array[x]>array[x+1]:
+                array[x]=array[x]+array[x+1] #De esta forma, se intercambian los valores (10=10+4 14)
+                array[x+1]=array[x]-array[x+1] #El valor 4, se resta entre el 14 y el 4 #10
+                array[x]=array[x]-array[x+1] #El valor 14, se resta con el número anterior #4
+"""         #el contador esta antes del ciclo del for, ya que si estuviera en esta linea, se ejecutaria como si fuese un else       
+      
+    #b)
+def bubblelizer(array):
+    lenght1=len(array)-1
+    termino=False    
+    while termino==False: #1 - una pasada
+        lenght1=lenght1-1
+        for x in range(lenght1): #8
+            if array[x]>array[x+1]:
+                array[x]=array[x]+array[x+1] #De esta forma, se intercambian los valores (10=10+4 14)
+                array[x+1]=array[x]-array[x+1] #El valor 4, se resta entre el 14 y el 4 #10
+                array[x]=array[x]-array[x+1] #El valor 14, se resta con el número anterior #4
 
-def surname():
-    apellido=input("Buscar...: ")
-    return apellido
 
-def search_IfSur(array,apellido):
-    for x in range(10):
-        if array[x]==apellido:
-            return True
 
-#Otra forma de realizarlo
-def search_IfSur(array,apellido):
-    esta=False
-    for x in range(10):
-        if array[x]==apellido:
-            esta=True
-    return esta 
 
-#Con un While
-def search_IfSur(array,apellido):
-    iteraciones=0
-    this=False
-    while iteraciones<10 and this==False:
-        if array[iteraciones]==apellido:
-            this=True
-        iteraciones=iteraciones+1 #a partir de que termine el ciclo, la iteracion va a sumar 1, o sea la 1era posicion
-    return this 
+           
 
-#Menú Principal
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
-    print("1. Cargar los apellidos de 10 alumnos.")
-    print("2. Mostrar por pantalla los apellidos contenidos.")
-    print("3. Buscar por apellido...")
-    print("0. Salir.")
-    print()
-
-def buttons(opcion):
-    if opcion==1:
-        load_Array(array)  #Carga los números
-        print("Se han cargado exitosamente")
-    elif opcion==2:
-        display_Array(array)   #Muestra los números por pantalla
-        print()
-        print("Se han cargado exitosamente")
-    elif opcion==3:
-        apellido=surname()
-        if search_IfSur(array,apellido)==True:
-            print("El apellido se encuentra en la lista")
-        else:
-            print("No hay coincidencias en su busqueda")     
-
-opcion=5
-while opcion!=0:
-    os.system("cls")
-    main_Menu()
-    opcion=int(input("Seleccione una opción (1-3): "))
-    buttons(opcion)
-    input("Presione Inter para continuar: ")
-
-
-
-#3)
-
-array=[0]*5000
-
-def load_Array(array):
-   for x in range(5000):
-       array[x]=random.randint(18,80)
-
-def display_Array(array):
-    for x in range(5000):
-        print(array[x],end=" ")
-
-def frequency(array):
-    freq=[0]*81
-    mayor=0
-    for x in range(5000):
-        posicion=array[x]
-        freq[posicion]=freq[posicion]+1
-        if freq[posicion]>mayor:
-            mayor=freq[posicion]
-            edad=posicion
-    print("La edad que más se repite es",edad,"y se repite una cantidad de",mayor,"veces")
-
-
-#Menú Principal
-def main_Menu():
-    print("***MENU PRINCIPAL***")
-    print()
-    print("1. Cargar 5000 edades")
-    print("2. Mostrar por pantalla las edades contenidas.")
-    print("3. Calcular la frecuencia de edad")
+    print("1. Cargar el vector.")
+    print("2. Mostrar por pantalla el vector.")
+    print("3. Ordenar el vector.")
     print("0. Salir.")
     print()
 
@@ -209,71 +130,9 @@ def buttons(opcion):
         print()
         print("Se han cargado exitosamente")
     elif opcion==3:
-        frequency(array)
-        
-opcion=5
-while opcion!=0:
-    os.system("cls")
-    main_Menu()
-    opcion=int(input("Seleccione una opción (1-3): "))
-    buttons(opcion)
-    input("Presione Inter para continuar: ")
-
-
-
-#4)
-
-array=[0]*40
-
-def load_Array(array):
-   for x in range(40):
-       array[x]=random.randint(-10,10)
-
-def display_Array(array):
-    for x in range(40):
-        print(array[x],end=" ")
-
-def sum15(array):
-    for x in range(40):
-        if array[x]<0:
-            array[x]=array[x]+15
-
-def repeat_Number(array):
-    array2=[0]*21
-    acumulador=0
-    for x in range(40):
-        posicion=array[x]
-        array2[posicion]=array2[posicion]+1
-        if array2[posicion]>1:
-            array[x]=-1
-            acumulador=acumulador+1
-    return acumulador
-
-#Menú Principal
-def main_Menu():
-    print("***MENU PRINCIPAL***")
-    print()
-    print("1. Cargar 40 números entre -10 y 10")
-    print("2. Mostrar por pantalla las edades contenidas.")
-    print("3. Eliminar los números negativos")
-    print("4. Eliminar los números repetidos")
-    print("0. Salir.")
-    print()
-
-def buttons(opcion):
-    if opcion==1:
-        load_Array(array)  
-        print("Se han cargado exitosamente")
-    elif opcion==2:
-        display_Array(array)   
-        print()
-        print("Se han cargado exitosamente")
-    elif opcion==3:
-        sum15(array)
-        print("Se han eliminado exitosamente")
-    elif opcion==4:
-        cantidad=repeat_Number(array)
-        print("Se han modificado una cantidad de",cantidad,"repeticiones")
+        #bubble_Dazzle(array)
+        bubblelizer(array)
+        print("Se ha ordenado exitosamente")
 
 opcion=5
 while opcion!=0:
@@ -282,4 +141,13 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
+
+
+
+
+
+
+
+
+
 
