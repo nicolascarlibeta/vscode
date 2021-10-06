@@ -6,28 +6,31 @@
 import random, os
 
 #1)
-
-array=[0]*20
-array2=[0]*20
+"""
+array=[0]*5
+array2=[0]*5
 
 #Producto Escalar: a1(x)*a2(x) + a1(x)*a2(x) + (...)
 
 def load_Array(array,array2):
-    for x in range(20): #Se itera un ciclo de 250 iteraciones
+    for x in range(5): #Se itera un ciclo de 250 iteraciones
         array[x]=random.randint(1,12)
         array2[x]=random.randint(1,12)
 
 #Muestra por pantalla del vector
 def display_Array(array,array2):
-    for x in range(20):
-        print(array[x], end=" ")
-        print(array2[x], end=" ")
+    for x in range(5):
+        print(array[x],end=" ")
+    for x in range(5):
+        print(array2[x],end=" ")
 
 def scalar_Product(array,array2):
-    scaleprod=[0]*2000
-    sigma=scaleprod[0]
-    for x in range(20):
-        scaleprod[x]=array[x]*array2[x]
+    scaleprod=[0]*5
+    sigma=0 #54
+    for x in range(5): #1
+        scaleprod[x]=array[x]*array2[x] #45 #5 #9 45
+        sigma=sigma+scaleprod[x]
+    print("El producto escalar da como resultado: ",sigma) 
         
 def main_Menu():
     print("***MENU PRINCIPAL***")
@@ -46,8 +49,72 @@ def buttons(opcion):
         display_Array(array,array2)   
         print()
         print("Se han cargado exitosamente")
-    #elif opcion==3:
-        #####
+    elif opcion==3:
+        scalar_Product(array,array2)
+    
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
+
+"""
+
+#2)
+
+array=[0]*120
+array2=[0]*120
+
+def load_Array(array,array2):
+    for x in range(120): 
+        array[x]=random.randint(1,1000)
+        array2[x]=random.randint(1,1000)
+
+
+def display_Array(array,array2):
+    for x in range(120):
+        print(array[x],end=" ")
+    for x in range(120):
+        print(array2[x],end=" ")
+
+
+def suma_Impares(array,array2):
+    pares=[0]*120
+    impares=[0]*120
+    suma=0
+    for x in range(120):
+        if (x%2)==0:
+            pares[x]=pares[x]+array[x]
+        elif (x%2)==1:
+            impares[x]=impares[x]+array2[x]
+        suma=suma+pares[x]
+        suma=suma+impares[x]
+    print("La suma de los elementos de paridad escalar es: ",suma)
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar números.")
+    print("2. Mostrar por pantalla.")
+    print("3. Hallar la suma de paridad escalar.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        load_Array(array,array2)  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        display_Array(array,array2)   
+        print()
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        suma_Impares(array,array2)
+    
 
 opcion=5
 while opcion!=0:
