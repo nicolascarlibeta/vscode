@@ -152,3 +152,8 @@ while esta:
     print("!")
 
 
+for x in range(12):
+    suma=0
+    if (x%2)==1:
+        suma=suma+1
+
