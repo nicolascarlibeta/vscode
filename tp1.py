@@ -61,7 +61,7 @@ while opcion!=0:
     buttons(opcion)
     input("Presione Inter para continuar: ")
 
-"""
+
 
 #2)
 
@@ -82,16 +82,12 @@ def display_Array(array,array2):
 
 
 def suma_Impares(array,array2):
-    pares=[0]*120
-    impares=[0]*120
     suma=0
     for x in range(120):
         if (x%2)==0:
-            pares[x]=pares[x]+array[x]
+            suma=suma+array[x]
         elif (x%2)==1:
-            impares[x]=impares[x]+array2[x]
-        suma=suma+pares[x]
-        suma=suma+impares[x]
+            suma=suma+array2[x]
     print("La suma de los elementos de paridad escalar es: ",suma)
 
 
@@ -114,6 +110,132 @@ def buttons(opcion):
         print("Se han cargado exitosamente")
     elif opcion==3:
         suma_Impares(array,array2)
+    
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
+
+
+
+
+#3)
+
+array=[0]*5
+
+
+def load_Array(array):
+    for x in range(len(array)): 
+        array[x]=random.randint(1,15)
+
+
+def display_Array(array):
+    for x in range(len(array)):
+        print(array[x],end=" ")
+
+
+def switcher(array):
+    posicion=len(array)-1
+    for x in range(len(array)-1):
+        array[posicion]=array[posicion]+array[posicion-1]
+        array[posicion-1]=array[posicion]-array[posicion-1]
+        array[posicion]=array[posicion]-array[posicion-1]
+        posicion=posicion-1
+
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar números.")
+    print("2. Mostrar por pantalla.")
+    print("3. Desplazar los elementos a la posición derecha.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        load_Array(array)  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        display_Array(array)   
+        print()
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        switcher(array)
+        print("Se han desplazado correctamente")
+        
+    
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
+"""
+
+#----------------------------------------------------------------
+#Ejercicios Adicionales
+
+
+#1)
+
+array=[0]*50
+
+
+def load_Array(array):
+    for x in range(len(array)): 
+        array[x]=random.randint(-15,15)
+
+
+def display_Array(array):
+    for x in range(len(array)):
+        print(array[x],end=" ")
+
+def pn_Z(array):
+    pos=0
+    neg=0
+    zer=0
+    for x in range(len(array)):
+        if array[x]>0:
+            pos=pos+1
+        elif array[x]<0:
+            neg=neg+1
+        else:
+            zer=zer+1
+    return pos,neg,zer
+
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar números.")
+    print("2. Mostrar por pantalla.")
+    print("3. Calcular la cantidad de números negativos, positivos y ceros.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        load_Array(array)  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        display_Array(array)   
+        print()
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        p,n,z=pn_Z(array)
+        print("La cantidad de números positivos es de: ",p)
+        print("La cantidad de números negativos es de: ",n)
+        print("La cantidad de números iguales a cero es de: ",z)
+        
     
 
 opcion=5
