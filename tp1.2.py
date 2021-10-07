@@ -63,6 +63,7 @@ for x in range(len(arrayip)):
         arrayip[x]+=arrayi[x+1]
         arrayip[x+1]=arrayip[x]-arrayip[x+1]
         arrayip-=arrayip[x+1]
+        print(arrayip[x])
 
 
 
