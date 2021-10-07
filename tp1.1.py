@@ -34,6 +34,15 @@ def bubble_Dazzle(array):
                 termino=False
 
 
+def search_Statement(array,busqueda):
+    contador=0
+    for x in range(len(array)):
+        if busqueda==array[x]:
+            contador=contador+1
+            
+    return contador
+
+
 def binary_Search(array,busqueda):
     posicioni=0
     posicionf=len(array)-1
@@ -52,13 +61,6 @@ def binary_Search(array,busqueda):
     
     return termino
 
-def search_Statement(array,busqueda):
-    contador=0
-    for x in range(len(array)):
-        if busqueda==array[x]:
-            contador=contador+1
-            
-    return contador
 
 
 
@@ -87,6 +89,7 @@ def buttons(opcion):
         busqueda=int(input("Buscar...: "))
         statement=search_Statement(array,busqueda)
         print("Hay",statement,"coincidencias.")
+    #elif opcion==5:
         #searchpot=binary_Search(array,busqueda)
         #if searchpot:
         #    print("El elemento SI se encuentra dentro del vector.")

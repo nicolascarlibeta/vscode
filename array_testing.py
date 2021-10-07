@@ -152,8 +152,7 @@ while esta:
     print("!")
 
 
-for x in range(12):
-    suma=0
-    if (x%2)==1:
-        suma=suma+1
+def crear_vector_long_n(n):
+    array=[0 for x in range(n)]
 
+crear_vector_long_n(0)
