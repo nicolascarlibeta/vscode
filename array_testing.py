@@ -155,4 +155,12 @@ while esta:
 def crear_vector_long_n(n):
     array=[0 for x in range(n)]
 
-crear_vector_long_n(0)
+array3=[1,5,3,4,3,6,9]
+
+for x in range(len(array3)-1):
+    if array3[x]==array3[x+1]:
+        array3[x]+=array3[x+1]
+        array3[x+1]=array3[x]-array3[x+1]
+        array3[x]-=array3[x+1]
+
+print(array3)

@@ -2,14 +2,21 @@
 
 
 
+import os
 #Trabajo Práctico 1.2
-import random, os
+import random
 
-"""
 #1)
 
+"""
 array=["Auto","Casa","Garage","Jardin","Patio","Terraza"]
+####
 
+#####
+
+def load_Array(array):
+    for x in range(len(array)): 
+        array[x]=random.randint(-15,15)
 
 def display_Array(array):
     for x in range(len(array)):
@@ -26,11 +33,13 @@ def mintomay(array):
     return ordenado 
 
 
+
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
     print("1. Mostrar por pantalla el vector.")
     print("2. Comprobar si esta ordenado de menor a mayor.")
+    print("3. Mostrar por pantalla el vector #2.")
     print("0. Salir.")
     print()
 
@@ -42,6 +51,12 @@ def buttons(opcion):
     elif opcion==2:
         ordenado=mintomay(array)
         print("Se encuentra",ordenado)
+    elif opcion==3:
+        display_Array(arrayip)
+        print()
+        print("Se han cargado exitosamente")
+
+
 
 opcion=5
 while opcion!=0:
@@ -50,22 +65,52 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
 
+"""
 #2)
 
-arrayp=[2,4,6,9]
-arrayi=[3,7,9,11,13,15]
-arrayip=arrayp+arrayi
 
-for x in range(len(arrayip)):
-    if arrayip[x]>arrayip[x+1]:
-        arrayip[x]+=arrayi[x+1]
-        arrayip[x+1]=arrayip[x]-arrayip[x+1]
-        arrayip-=arrayip[x+1]
-        print(arrayip[x])
+array=[2,4,6,9]
+array2=[3,7,9,11,13,15]
+array3=[0]*15
+
+def display_Array(array3):
+    for x in range(len(array3)):
+        print(array3[x], end=" ")
 
 
+def ordering(array,array2,array3):
+    for x in range(len(array)):
+        posicion=array[x]
+        array3[posicion-2]=posicion
+    for x in range(len(array2)):
+        posicion2=array2[x]
+        array3[posicion2-2]=posicion2
+
+        
 
 
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Mostrar por pantalla el vector.")
+    print("2. Comprobar si esta ordenado de menor a mayor.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        display_Array(array3)   
+        print()
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        ordering(array,array2,array3)
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-0): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
 

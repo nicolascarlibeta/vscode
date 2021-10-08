@@ -33,14 +33,33 @@ def bubble_Dazzle(array):
                 array[x]=array[x]-array[x+1]
                 termino=False
 
+#-------------------------------------------------
 
-def search_Statement(array,busqueda):
+
+def position_Spot(contador,x):
+    posicion=0
+    if contador==1:
+        posicion=x
+    
+    return posicion
+
+#a)
+def search_Repeated(array,busqueda):
     contador=0
     for x in range(len(array)):
         if busqueda==array[x]:
             contador=contador+1
+            posicion=position_Spot(contador,x)
+            print("Se encuentra en la posicion",posicion)
             
+       
     return contador
+
+#-------------------------------------------------
+
+#a)
+
+
 
 
 def binary_Search(array,busqueda):
@@ -87,7 +106,7 @@ def buttons(opcion):
         print("Se ha ordenado exitosamente")
     elif opcion==4:
         busqueda=int(input("Buscar...: "))
-        statement=search_Statement(array,busqueda)
+        statement=search_Repeated(array,busqueda)
         print("Hay",statement,"coincidencias.")
     #elif opcion==5:
         #searchpot=binary_Search(array,busqueda)
