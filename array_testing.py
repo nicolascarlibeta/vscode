@@ -145,8 +145,11 @@ print("Hay" ,cantidad, "cantidad de números negativos")
 print("Hay" ,cantidad2, "cantidad de números positivos")
 print("Hay" ,cantidad3, "cantidad de números iguales a cero")
 """
+import numpy as np
 
 
+
+"""
 esta=False
 while esta:
     print("!")
@@ -155,12 +158,44 @@ while esta:
 def crear_vector_long_n(n):
     array=[0 for x in range(n)]
 
-array3=[1,5,3,4,3,6,9]
-
-for x in range(len(array3)-1):
-    if array3[x]==array3[x+1]:
-        array3[x]+=array3[x+1]
-        array3[x+1]=array3[x]-array3[x+1]
-        array3[x]-=array3[x+1]
-
+array3=[[1,5,3,4,3,6,9],[2,3,5,7,9]]
 print(array3)
+
+for x in range(len(array3)):
+    print(array3[x])
+"""
+
+
+array=[0]*5
+
+matrix=[[9]*5]*2
+
+
+columnas=3
+filas=3
+
+
+for x in range(len(matrix)):
+    print(matrix[x])
+
+
+#Crear una matriz inicializada en cero, con 2 columnas y 3 filas
+
+matray=[[0]*2]*3
+
+for x in range(len(matray)):
+    print(matray[x])
+
+#Crear una matriz inicializada en 2 y 5, y 3 y 4 con 2 columnas y 2 filas
+
+matray2=[[[2,5],[3,4]]]*2
+
+for x in range(len(matray2)):
+    print(matray2[x])
+
+
+atray=[]
+for x in range(3):
+    atray=atray+[[9]*2]
+
+print(atray)
