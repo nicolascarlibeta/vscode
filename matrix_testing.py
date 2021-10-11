@@ -3,6 +3,7 @@
 
 import numpy as np
 
+"""
 # -------------------------------------
 # Vector en forma de lista (Heterogeneo)
 
@@ -88,4 +89,47 @@ print()
 print("Tamaño de la matriz 3D: ",matriz3d.size)
 print()
 print("Forma de la matriz: ",matriz3d.shape)
+
+array=[0]*5
+
+matrix=[[9]*5]*2
+
+
+columnas=3
+filas=3
+
+
+for x in range(len(matrix)):
+    print(matrix[x])
+
+
+#Crear una matriz inicializada en cero, con 2 columnas y 3 filas
+
+matray=[[0]*2]*3
+
+for x in range(len(matray)):
+    print(matray[x])
+
+#Crear una matriz inicializada en 2 y 5, y 3 y 4 con 2 columnas y 2 filas
+
+matray2=[[[2,5],[3,4]]]*2
+
+for x in range(len(matray2)):
+    print(matray2[x])
+
+
+atray=[]
+for x in range(3):
+    atray=atray+[[9]*2]
+
+print(atray)
+
+matrix=np.array(([0]*5) for x in range(5))
+
+for x in range(1,10+1,2):
+    print(x)
+
+flotante=3.5
+print(type(3.5))
+"""
 

@@ -165,37 +165,84 @@ for x in range(len(array3)):
     print(array3[x])
 """
 
+"""
+array=[9,3,6,1,5]
+busqueda=int(input("¿Que número desea buscar?: "))
 
-array=[0]*5
+def busqueda_lineal(vector,target):
+    posicion=-1
+    contador=0
+    while contador<len(vector) and posicion==-1:
+        if vector[contador]==target:
+            posicion=contador
+        contador=contador+1
 
-matrix=[[9]*5]*2
+    return posicion
+
+posicion=busqueda_lineal(array,busqueda)
+print("Posicion",posicion)
+"""
+
+array=[-1,1,1,2,3,4,5,6,7,8,9,10]
+busqueda=int(input("Ingrese un número: "))
+"""
+for x in range(1):
+    if array[x]>array[x+1]:
+        switch=array[x]
+        print(switch) 
+        array[x]=array[x+1]
+        print(switch) 
+        array[x+1]=switch
+        print(switch)
+    
+def busqueda_binaria_iter(vector, target):
+    posicion=-1
+    posicioni=0
+    posicionf=len(vector)-1
+    termino=False
+    contador=0
+    while posicioni<=posicionf and not(termino):
+        medium=(posicioni+posicionf)//2
+        if target==vector[medium]:
+            termino=True
+            posicion=medium
+
+        elif target>vector[medium]:
+            posicioni=medium+1
+
+        elif target<vector[medium]:
+            posicionf=medium-1
+
+        contador=contador+1
+
+    return contador,posicion
 
 
-columnas=3
-filas=3
+posicion=busqueda_binaria_iter(array,busqueda)
+print("Esta en la posición",posicion)
+"""
+"""
+arrayx=[0]*11
+print(len(arrayx))
+
+for x in range(11):
+    print(x,end=" ")
+print()
+"""
+vector=[0]*0
+print(vector)
+
+"""
+for x in range(11):
+    elemento=elemento+1
+    vector=[0]*elemento
+    vector[0]=2
+    print(vector,end=" ")
+"""
 
 
-for x in range(len(matrix)):
-    print(matrix[x])
 
 
-#Crear una matriz inicializada en cero, con 2 columnas y 3 filas
-
-matray=[[0]*2]*3
-
-for x in range(len(matray)):
-    print(matray[x])
-
-#Crear una matriz inicializada en 2 y 5, y 3 y 4 con 2 columnas y 2 filas
-
-matray2=[[[2,5],[3,4]]]*2
-
-for x in range(len(matray2)):
-    print(matray2[x])
 
 
-atray=[]
-for x in range(3):
-    atray=atray+[[9]*2]
 
-print(atray)

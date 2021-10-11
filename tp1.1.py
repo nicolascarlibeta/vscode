@@ -36,31 +36,45 @@ def bubble_Dazzle(array):
 #-------------------------------------------------
 
 
-def position_Spot(contador,x):
-    posicion=0
-    if contador==1:
-        posicion=x
-    
-    return posicion
-
 #a)
 def search_Repeated(array,busqueda):
     contador=0
     for x in range(len(array)):
         if busqueda==array[x]:
             contador=contador+1
-            posicion=position_Spot(contador,x)
-            print("Se encuentra en la posicion",posicion)
-            
-       
+
     return contador
 
 #-------------------------------------------------
 
-#a)
+#b)
+def lineal_Search(array,busqueda):
+    contador=0
+    posicion=-1
+    while contador<len(array) and posicion==-1:
+        if array[contador]==busqueda:
+            posicion=contador
+        contador=contador+1
 
+    return posicion
+    
+#-------------------------------------------------
 
+#c)
+def x(array,busqueda):
+    contador=0
+    elementos=0
+    array2=[0]*elementos
+    posicion=0
+    for x in range(14): #El problema esta dentro de este ciclo
+        if array[contador]==busqueda:
+            elementos=elementos+1
+            array2[0]=contador #Tambien se tiene que referenciar de vuelta al array2
+            posicion=posicion+1
 
+        contador=contador+1
+
+    return array2
 
 def binary_Search(array,busqueda):
     posicioni=0
@@ -108,6 +122,11 @@ def buttons(opcion):
         busqueda=int(input("Buscar...: "))
         statement=search_Repeated(array,busqueda)
         print("Hay",statement,"coincidencias.")
+        posicion=lineal_Search(array,busqueda)
+        print("El número se encuentra en la posición",posicion)
+        array2=x(array,busqueda)
+        print("Las posiciones donde se encuentra el",busqueda,"son",array2)
+
     #elif opcion==5:
         #searchpot=binary_Search(array,busqueda)
         #if searchpot:
