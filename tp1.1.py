@@ -20,21 +20,8 @@ def display_Array(array):
         print(array[x],end=" ")
 
 
-def bubble_Dazzle(array):
-    lenght=len(array)
-    termino=False
-    while not(termino):
-        lenght=lenght-1
-        termino=True
-        for x in range(lenght):
-            if array[x]>array[x+1]:
-                array[x]=array[x]+array[x+1]
-                array[x+1]=array[x]-array[x+1]
-                array[x]=array[x]-array[x+1]
-                termino=False
 
 #-------------------------------------------------
-
 
 #a)
 def search_Repeated(array,busqueda):
@@ -62,19 +49,80 @@ def lineal_Search(array,busqueda):
 
 #c)
 def x(array,busqueda):
-    contador=0
-    elementos=0
-    array2=[0]*elementos
     posicion=0
-    for x in range(14): #El problema esta dentro de este ciclo
-        if array[contador]==busqueda:
-            elementos=elementos+1
-            array2[0]=contador #Tambien se tiene que referenciar de vuelta al array2
+    array2=[0]*len(array)
+    for x in range(len(array)): 
+        if array[x]==busqueda:
+            array2[posicion]=x
             posicion=posicion+1
 
-        contador=contador+1
-
     return array2
+
+
+#2)
+
+array2=[1,1,5,19,4,2,9,5,6]
+
+def AtoZ_Ordering(array,a):
+    lenght=len(array)
+    termino=False
+    if a==1:
+        while not(termino):
+            lenght=lenght-1
+            termino=True
+            for x in range(lenght):
+                if array[x]>array[x+1]:
+                    switch=array[x]
+                    array[x]=array[x+1]
+                    array[x+1]=switch
+                    termino=False
+    elif a==2:
+        while not(termino):
+            lenght=lenght-1
+            termino=True
+            for x in range(lenght):
+                if array[x]<array[x+1]:
+                    switch=array[x]
+                    array[x]=array[x+1]
+                    array[x+1]=switch
+                    termino=False
+
+
+def AtoZ_Main_Menu():
+    print("ORDEN: POR ASCENDENCIA (A-Z)")
+    print()
+    print("Ordenar por...")
+    print("1. De la A a la Z.")
+    print("2. De la Z a la A.")
+    print("0. Volver.")
+    print()
+
+def snd_Menu():
+    print(">>>SIGUIENTE>>")
+    print()
+    print("1. Cargar números.")
+    print("2. Mostrar por pantalla.")
+    print("3. Ordenar.")
+    print("0. Volver al menú principal.")
+    print()
+
+def buttons2(opcion):
+    if opcion==1:
+        load_Array(array2)  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        display_Array(array2)   
+        print()
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        backdrop=5
+        while backdrop!=0:
+            os.system("cls")
+            AtoZ_Main_Menu()
+            backdrop=int(input("Seleccione una opción (1-2): "))
+            AtoZ_Ordering(array2,backdrop)
+            input("Presione Inter para continuar: ")
+        
 
 def binary_Search(array,busqueda):
     posicioni=0
@@ -102,8 +150,8 @@ def main_Menu():
     print()
     print("1. Cargar números.")
     print("2. Mostrar por pantalla.")
-    print("3. Ordenar.")
-    print("4. Buscar por número.")
+    print("3. Buscar por número.")
+    print("4. >>>SIGUIENTE>>.")
     print("0. Salir.")
     print()
 
@@ -116,9 +164,6 @@ def buttons(opcion):
         print()
         print("Se han cargado exitosamente")
     elif opcion==3:
-        bubble_Dazzle(array)
-        print("Se ha ordenado exitosamente")
-    elif opcion==4:
         busqueda=int(input("Buscar...: "))
         statement=search_Repeated(array,busqueda)
         print("Hay",statement,"coincidencias.")
@@ -126,6 +171,14 @@ def buttons(opcion):
         print("El número se encuentra en la posición",posicion)
         array2=x(array,busqueda)
         print("Las posiciones donde se encuentra el",busqueda,"son",array2)
+    elif opcion==4:
+        opcion2=5
+        while opcion2!=0:
+            os.system("cls")
+            snd_Menu()
+            opcion2=int(input("Seleccione una opción (1-3): "))
+            buttons2(opcion2)
+            input("Presione Inter para continuar: ")
 
     #elif opcion==5:
         #searchpot=binary_Search(array,busqueda)
