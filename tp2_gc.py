@@ -218,6 +218,22 @@ def tfe_Multiples(matrix):
     
     return three,five,eleven
 
+#d)
+def prime_Numbers(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    contador=0
+    prime=0
+    for f in range(filas):
+        for c in range(2,columnas):
+                if (matrix[f,c]%c)!=0:
+                    contador=contador+1
+                    if contador==max(matrix)-1:
+                        prime=prime+1
+
+
+    return prime
+
 
 
 def main_Menu():
@@ -228,6 +244,7 @@ def main_Menu():
     print("3. Sumar los números pares en las filas impares.")
     print("4. Calcular la cantidad de números multiplos de 5.")
     print("5. Informar si existe al menos un número múltiplo de 3, 5 y 11.")
+    print("6. Calcular la cantidad de números primos.")
     print("0. Salir.")
     print()
 
@@ -260,6 +277,9 @@ def buttons(opcion):
             print("Existe al menos un número múltiplo de 11")
         else:
             print("No existe ningún número múltiplo de 11")
+    elif opcion==6:
+        primos=prime_Numbers(matrix)
+        print("La cantidad de números primos dento de la matriz es de: ",primos)
 
 
 opcion=5

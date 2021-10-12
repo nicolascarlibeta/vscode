@@ -1,7 +1,8 @@
 
 
 
-import numpy as np
+import numpy as np, random
+
 
 """
 # -------------------------------------
@@ -133,3 +134,42 @@ flotante=3.5
 print(type(3.5))
 """
 
+
+
+matrix=np.array([[0]*2]*2)
+
+def load_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            matrix[f,c]=random.randint(-1,7)
+
+
+def display_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[f,c],end=" ")
+        print()
+    print()
+
+def sigma_Rows(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    suma=[0]*columnas
+    suma2=[0]*filas
+    posicion=-1
+    for f in range(filas): #3
+        suma=suma+matrix[f]
+        posicion=posicion+1
+        for c in range(columnas): #3
+            suma2[posicion]=suma2[posicion]+matrix[f,c]
+    
+    print(suma2)
+
+
+load_Matray(matrix)
+display_Matray(matrix)
+sigma_Rows(matrix)
