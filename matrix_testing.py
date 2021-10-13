@@ -132,44 +132,66 @@ for x in range(1,10+1,2):
 
 flotante=3.5
 print(type(3.5))
+
+
+#Accediendo por fila
+
+
+# alias (no es una nueva lista)
+a = [[1,2,3] , [4,5,6] ]
+
+#print(a[1])
+
+
+#Accediendo por columna
+
+# copia (no es un alias! se crea una nueva lista)
+a =np.array([[1,2,3],[4,5,6]])
+col=1
+print([a[0,col]])
+
+#print(colList)
+
+colList=[a[x,col] for x in range(2)]
+print(colList)
 """
 
 
 
-matrix=np.array([[0]*2]*2)
 
-def load_Matray(matrix):
-    filas=matrix.shape[0]
-    columnas=matrix.shape[1]
-    for f in range(filas):
-        for c in range(columnas):
-            matrix[f,c]=random.randint(-1,7)
+vector=np.array([2,3,4,5,6,7,8,9,10])
+#matrix=np.array([[2,3,4],[5,6,7]])
 
+#filas=matrix.shape[0]
+#columnas=matrix.shape[1]
 
-def display_Matray(matrix):
-    filas=matrix.shape[0]
-    columnas=matrix.shape[1]
-    for f in range(filas):
-        for c in range(columnas):
-            print(matrix[f,c],end=" ")
-        print()
+"""
+for f in range(filas):
+    for c in range(columnas):
+        print(matrix[f,c],end=" ")
     print()
+print()
+"""
 
-def sigma_Rows(matrix):
-    filas=matrix.shape[0]
-    columnas=matrix.shape[1]
-    suma=[0]*columnas
-    suma2=[0]*filas
+
+       
+vector2=[0]*len(vector)
+def prime_number(matrix):
     posicion=-1
-    for f in range(filas): #3
-        suma=suma+matrix[f]
+    for x in range(len(matrix)):
         posicion=posicion+1
-        for c in range(columnas): #3
-            suma2[posicion]=suma2[posicion]+matrix[f,c]
-    
-    print(suma2)
+        for j in range(2,matrix[posicion]):
+            if (matrix[posicion]%j)==0:
+                vector2[posicion]=matrix[posicion]
+    print(vector2)
 
 
-load_Matray(matrix)
-display_Matray(matrix)
-sigma_Rows(matrix)
+
+prime_number(vector)
+
+
+
+
+
+
+

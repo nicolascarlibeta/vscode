@@ -226,13 +226,11 @@ def prime_Numbers(matrix):
     prime=0
     for f in range(filas):
         for c in range(2,columnas):
-                if (matrix[f,c]%c)!=0:
+                if (matrix[f,c]%matrix[f,c])!=0:
                     contador=contador+1
-                    if contador==max(matrix)-1:
-                        prime=prime+1
 
 
-    return prime
+    return contador
 
 
 

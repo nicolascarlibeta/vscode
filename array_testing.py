@@ -181,11 +181,11 @@ def busqueda_lineal(vector,target):
 
 posicion=busqueda_lineal(array,busqueda)
 print("Posicion",posicion)
-"""
+
 
 array=[-1,1,1,2,3,4,5,6,7,8,9,10]
 busqueda=int(input("Ingrese un número: "))
-"""
+
 for x in range(1):
     if array[x]>array[x+1]:
         switch=array[x]
@@ -228,11 +228,7 @@ print(len(arrayx))
 for x in range(11):
     print(x,end=" ")
 print()
-"""
-vector=[0]*0
-print(vector)
 
-"""
 for x in range(11):
     elemento=elemento+1
     vector=[0]*elemento
@@ -241,8 +237,12 @@ for x in range(11):
 """
 
 
+vector=[1,2,3,4,6,7,8,9]
+vector2=vector #Aliasing
+vector3=[0]*18
+vector3=vector+vector2
 
-
-
-
-
+vector2[3]=114 
+print(vector)
+print(vector2)
+print(vector3)

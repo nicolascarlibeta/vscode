@@ -72,7 +72,8 @@ while opcion!=0:
 
 array=[2,4,6,9]
 array2=[3,7,9,11,13,15]
-array3=[0]*15
+tamaño=len(array+array2)
+array3=[0]*tamaño
 
 def display_Array(array3):
     for x in range(len(array3)):
@@ -80,12 +81,12 @@ def display_Array(array3):
 
 
 def ordering(array,array2,array3):
+    posicion=0
     for x in range(len(array)):
-        posicion=array[x]
-        array3[posicion-2]=posicion
-    for x in range(len(array2)):
-        posicion2=array2[x]
-        array3[posicion2-2]=posicion2
+        array3[x]=array[x]
+    for j in range(len(array),tamaño):
+        array3[j]=array2[posicion]
+        posicion=posicion+1
 
         
 
