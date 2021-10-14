@@ -132,7 +132,7 @@ for x in range(1,10+1,2):
 
 flotante=3.5
 print(type(3.5))
-"""
+
 
 
 
@@ -173,3 +173,88 @@ def sigma_Rows(matrix):
 load_Matray(matrix)
 display_Matray(matrix)
 sigma_Rows(matrix)
+"""
+
+matrix=np.array([[0]*10]*10)
+
+def load_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            matrix[f,c]=random.randint(1,500)
+
+def display_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[f,c],end=" ")
+        print()
+    print() 
+
+
+
+
+def runtime(matrix):
+    columna=-1
+    columnas=matrix.shape[1]
+    contador=0
+    sap=False
+    while contador<columnas and sap==False:
+        columna=columna+1
+        sap=xcx(matrix,columna)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        contador=contador+1
+
+
+def xcx(matrix,columna):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    menor=matrix[0,0]
+    for x in range(filas):
+        if matrix[x,columna]<menor:
+            menor=matrix[x,columna]
+        for c in range(columnas):
+            if menor<matrix[x,c]:
+                print("No hay punto de silla")
+                return False
+
+    print("Hay punto de silla",menor)
+    return True
+       
+                
+#while contador<columnas:
+          
+    
+
+load_Matray(matrix)
+display_Matray(matrix)
+runtime(matrix)
+
+                    
+
+            
+
+
+
+        
+
+
+
+
