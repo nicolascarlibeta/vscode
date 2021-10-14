@@ -6,7 +6,6 @@
 #	 Modificar las funciones para que solo reciban por parámetro el arreglo
 #    Realizar una función que informe cuantos elementos pares, impares y ceros tiene cada arreglo
 
-from warnings import filterwarnings
 import numpy as np, random, os
 
 """
@@ -219,18 +218,47 @@ def tfe_Multiples(matrix):
     return three,five,eleven
 
 #d)
+def prime_Id(matrix,f,c):
+    if matrix[f,c]<2:
+        return False
+    for x in range(2,matrix[f,c]):
+        if (matrix[f,c]%x)==0:
+            return False
+    return True
+
 def prime_Numbers(matrix):
     filas=matrix.shape[0]
     columnas=matrix.shape[1]
-    contador=0
-    prime=0
     for f in range(filas):
-        for c in range(2,columnas):
-                if (matrix[f,c]%matrix[f,c])!=0:
-                    contador=contador+1
+        for c in range(columnas):
+            if prime_Id(matrix,f,c)==True:
+                    print(matrix[f,c],end=". ")
+    
+#e)
+def saddlep_Id(matrix,f,c):
+    for x in range(1):
+        if matrix[f,c]>matrix[f,c+1]:
+            return True
 
+def saddlep_Rows(matrix,f,c):
+    filas=matrix.shape[0]
+    sap=False
+    for x in range(0,filas-1):
+        if matrix[x,c]<matrix[f,c]:
+            return False
+        
+    sap=True
+    return sap
 
-    return contador
+def saddle_Point(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas-1):
+            if saddlep_Id(matrix,f,c)==True:
+                if saddlep_Rows(matrix,f,c)==True:
+                    print("Hay un punto de silla",matrix[f,c])
+
 
 
 
@@ -242,7 +270,8 @@ def main_Menu():
     print("3. Sumar los números pares en las filas impares.")
     print("4. Calcular la cantidad de números multiplos de 5.")
     print("5. Informar si existe al menos un número múltiplo de 3, 5 y 11.")
-    print("6. Calcular la cantidad de números primos.")
+    print("6. Mostrar todos los números primos dentro de la matriz.")
+    print("7. Informar si la matríz posee punto de silla.")
     print("0. Salir.")
     print()
 
@@ -251,6 +280,7 @@ def buttons(opcion):
         load_Matray(matrix)  
         print("Se han cargado exitosamente")
     elif opcion==2:
+        print()
         display_Matray(matrix)   
         print()
         print("Se han cargado exitosamente")
@@ -276,8 +306,11 @@ def buttons(opcion):
         else:
             print("No existe ningún número múltiplo de 11")
     elif opcion==6:
-        primos=prime_Numbers(matrix)
-        print("La cantidad de números primos dento de la matriz es de: ",primos)
+        print("Los números primos que se encuentran dentro de la matriz son: ")
+        prime_Numbers(matrix)
+        print()
+    elif opcion==7:
+        saddle_Point(matrix)
 
 
 opcion=5
