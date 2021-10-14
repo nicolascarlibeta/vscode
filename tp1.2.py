@@ -79,14 +79,21 @@ def display_Array(array3):
         print(array3[x], end=" ")
 
 
+<<<<<<< HEAD
 def ordering(array,array2):
+=======
+def ordering(array,array2,array3):
+>>>>>>> 140e852cb65b55fbc864b789a5c1764c3556fe5c
     posicion=0
     for x in range(len(array)):
         array3[x]=array[x]
     for j in range(len(array),tamaño):
         array3[j]=array2[posicion]
         posicion=posicion+1
+<<<<<<< HEAD
         
+=======
+>>>>>>> 140e852cb65b55fbc864b789a5c1764c3556fe5c
 
     
     return array3
