@@ -183,8 +183,6 @@ posicion=busqueda_lineal(array,busqueda)
 print("Posicion",posicion)
 """
 
-array=[-1,1,1,2,3,4,5,6,7,8,9,10]
-busqueda=int(input("Ingrese un número: "))
 """
 for x in range(1):
     if array[x]>array[x+1]:
@@ -228,17 +226,52 @@ print(len(arrayx))
 for x in range(11):
     print(x,end=" ")
 print()
-"""
-vector=[0]*0
-print(vector)
 
-"""
+
+
 for x in range(11):
     elemento=elemento+1
     vector=[0]*elemento
     vector[0]=2
     print(vector,end=" ")
 """
+
+
+elementos=0
+array=[3,3,5,2,6,4,5,1]
+busqueda=int(input("Ingrese un número: "))
+#array2=[0]*1
+array3=[0]
+contador=0
+
+#array2[0]=busqueda
+
+elementos=1
+posicion=0
+for x in range(1,3):
+    array2=[0]*elementos
+    array2[posicion]=x
+    elementos=elementos+1
+    posicion=posicion+1
+
+
+print(array2)
+
+def mintomay(array):
+    ordenado="Ordenado"
+    contador=0
+    termino=False
+    while contador<len(array)-1 and not(termino):
+        if array[contador]>array[contador+1]:
+            ordenado="Desordenado"
+            termino=True
+        contador=contador+1
+
+    return ordenado 
+
+
+
+
 
 
 
