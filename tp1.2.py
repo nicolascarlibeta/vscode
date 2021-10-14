@@ -10,9 +10,6 @@ import random
 
 """
 array=["Auto","Casa","Garage","Jardin","Patio","Terraza"]
-####
-
-#####
 
 def load_Array(array):
     for x in range(len(array)): 
@@ -23,12 +20,14 @@ def display_Array(array):
         print(array[x], end=" ")
 
 def mintomay(array):
-    ordenado="No"
-    for x in range(len(array)-1):
-        if array[x]<array[x+1]:
-            ordenado="Ordenado"
-        else:
+    ordenado="Ordenado"
+    contador=0
+    termino=False
+    while contador<len(array)-1 and not(termino):
+        if array[contador]>array[contador+1]:
             ordenado="Desordenado"
+            termino=True
+        contador=contador+1
 
     return ordenado 
 
@@ -52,7 +51,7 @@ def buttons(opcion):
         ordenado=mintomay(array)
         print("Se encuentra",ordenado)
     elif opcion==3:
-        display_Array(arrayip)
+        display_Array(array3)
         print()
         print("Se han cargado exitosamente")
 
@@ -65,8 +64,8 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-
 """
+
 #2)
 
 
@@ -87,25 +86,34 @@ def ordering(array,array2,array3):
     for j in range(len(array),tamaño):
         array3[j]=array2[posicion]
         posicion=posicion+1
+        
 
+    
+    return array3
         
 
 
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
-    print("1. Mostrar por pantalla el vector.")
-    print("2. Comprobar si esta ordenado de menor a mayor.")
+    print("1. Mostrar por pantalla los vectores.")
+    print("2. Ordenar dentro de un vector secundario.")
     print("0. Salir.")
     print()
 
 def buttons(opcion):
     if opcion==1:
-        display_Array(array3)   
+        print("Vector #1")
+        display_Array(array)
+        print()
+        print("Vector #2")
+        display_Array(array2)   
         print()
         print("Se han cargado exitosamente")
     elif opcion==2:
-        ordering(array,array2,array3)
+        array1=ordering(array,array2)
+        print("El vector",array1,"se ha cargado exitosamente")
+
 
 opcion=5
 while opcion!=0:

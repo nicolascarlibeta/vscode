@@ -158,20 +158,21 @@ print(colList)
 
 
 
-
+"""
 vector=np.array([2,3,4,5,6,7,8,9,10])
 #matrix=np.array([[2,3,4],[5,6,7]])
 
 #filas=matrix.shape[0]
 #columnas=matrix.shape[1]
 
-"""
+
 for f in range(filas):
     for c in range(columnas):
         print(matrix[f,c],end=" ")
     print()
 print()
-"""
+
+
 
 
        
@@ -188,9 +189,93 @@ def prime_number(matrix):
 
 
 prime_number(vector)
+"""
 
 
 
+matrix=np.array([[0]*5]*5)
+
+def load_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            matrix[f,c]=random.randint(1,500)
+
+def display_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[f,c],end=" ")
+        print()
+    print() 
+
+
+def menor_columna(matrix,columna):
+    filas=matrix.shape[0]
+    menor=matrix[0,columna]
+    steps=1
+    fila=0
+    for f in range(steps):
+        for x in range(filas): #5
+            if matrix[x,columna]<menor:
+                menor=matrix[x,columna]
+                fila=x
+                
+                
+    
+    return matrix,menor,fila
+
+
+def mayor_fila(matrix,menor,fila):
+    columnas=matrix.shape[1]
+    sp=True
+    for x in range(columnas):
+        if menor<matrix[fila,x]:
+            return False
+            
+    print("La matriz actual SI posee punto de silla, y es el número",menor)
+    return True
+
+
+def saddle_Point(matrix):      
+    filas=matrix.shape[0]
+    columna=-1
+    sp=True
+    for x in range(filas):
+        columna=columna+1
+        matrix,minor,rows=menor_columna(matrix,columna)
+        mayor_fila(matrix,minor,rows)
+
+load_Matray(matrix)
+display_Matray(matrix)
+saddle_Point(matrix)
+
+
+
+#minor=menor_columna(matrix,steps)
+    
+
+
+#for c in range(columnas):
+#    if menor<matrix[x,c]:
+#        print("No hay punto de silla")
+#        return False
+#
+#print("Hay punto de silla",menor)
+#return True
+    
+
+
+
+                    
+
+            
+
+
+
+        
 
 
 

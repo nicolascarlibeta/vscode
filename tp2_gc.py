@@ -235,29 +235,36 @@ def prime_Numbers(matrix):
                     print(matrix[f,c],end=". ")
     
 #e)
-def saddlep_Id(matrix,f,c):
-    for x in range(1):
-        if matrix[f,c]>matrix[f,c+1]:
-            return True
-
-def saddlep_Rows(matrix,f,c):
+def menor_columna(matrix,columna):
     filas=matrix.shape[0]
-    sap=False
-    for x in range(0,filas-1):
-        if matrix[x,c]<matrix[f,c]:
-            return False
-        
-    sap=True
-    return sap
+    menor=matrix[0,columna]
+    steps=1
+    fila=0
+    for f in range(steps):
+        for x in range(filas): #5
+            if matrix[x,columna]<menor:
+                menor=matrix[x,columna]
+                fila=x
 
-def saddle_Point(matrix):
-    filas=matrix.shape[0]
+    return matrix,menor,fila
+
+
+def mayor_fila(matrix,menor,fila):
     columnas=matrix.shape[1]
-    for f in range(filas):
-        for c in range(columnas-1):
-            if saddlep_Id(matrix,f,c)==True:
-                if saddlep_Rows(matrix,f,c)==True:
-                    print("Hay un punto de silla",matrix[f,c])
+    for x in range(columnas):
+        if menor<matrix[fila,x]:
+            return False
+    print("La matriz actual SI posee punto de silla, y es el número",menor)
+    return True
+
+
+def saddle_Point(matrix):      
+    filas=matrix.shape[0]
+    columna=-1
+    for x in range(filas):
+        columna=columna+1
+        matrix,minor,rows=menor_columna(matrix,columna)
+        mayor_fila(matrix,minor,rows)
 
 
 
