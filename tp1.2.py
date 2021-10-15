@@ -64,7 +64,7 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
+
 
 #2)
 
@@ -122,4 +122,29 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
+"""
+
+#3)
+
+array=[1,2,3,4,5,6,7,8,9,0,0]
+cantidad_util=9
+
+for x in range(cantidad_util):
+    print(array[x],end=" ")
+print()
+
+
+def overdimension(array,opcion,entero):
+    cantidad_util=9
+    if opcion=="a":
+        if cantidad_util>len(array):
+            print("ERROR! Se excedio el límite: No se pueden agregar mas elementos")
+        array[cantidad_util]=entero
+        cantidad_util=cantidad_util+1
+        for x in range(cantidad_util):
+            print(array[x],end=" ")
+    elif opcion=="b"
+
+input()
+overdimension(array,"a",19)
 

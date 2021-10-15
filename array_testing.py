@@ -237,4 +237,13 @@ for x in range(11):
 
 """
 
-           
+#Mientras i<len(v1) and j<len(v2)			
+#	if v1[x]==v2[j]: se pasa el valor, y se suma el indice de los tres vectores		
+#	if v1[x]<v2[j]:		
+#	v3[x]=v1[x]
+#    		
+#Si se cierra el ciclo, se trasladan los numeros			
+#del vector	v1[0]<v2[1]		
+#	Se le suman los indices si es falso, para comparar con el siguiente		
+#	El vector 3 siempre suma su indice		
+#           

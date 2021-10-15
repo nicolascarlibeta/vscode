@@ -153,7 +153,7 @@ pair_Tensor(tensor)
 """
 
 #1)
-
+"""
 matrix=np.array([[0]*10]*10)
 
 def load_Matray(matrix):
@@ -267,8 +267,6 @@ def saddle_Point(matrix):
         mayor_fila(matrix,minor,rows)
 
 
-
-
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
@@ -317,7 +315,60 @@ def buttons(opcion):
         prime_Numbers(matrix)
         print()
     elif opcion==7:
+        print("Con la tecnología i+d de SaddlePoint.")
         saddle_Point(matrix)
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
+"""
+
+#2)
+
+matrix=np.array([[0]*3]*3)
+
+
+def load_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            matrix[f,c]=random.randint(0,5)
+
+
+def display_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[f,c],end=" ")
+        print()
+    print() 
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar la matriz.")
+    print("2. Mostrar por pantalla la matriz.")
+    print("0. Salir.")
+    print()
+
+    
+def buttons(opcion):
+    if opcion==1:
+        load_Matray(matrix)  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        print()
+        display_Matray(matrix)   
+        print()
+        print("Se han cargado exitosamente")
 
 
 opcion=5
