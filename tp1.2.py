@@ -124,7 +124,7 @@ while opcion!=0:
     input("Presione Inter para continuar: ")
 """
 
-#3)
+#4)
 
 array=[1,2,3,4,5,6,7,8,9,0,0]
 cantidad_util=9
@@ -133,18 +133,47 @@ for x in range(cantidad_util):
     print(array[x],end=" ")
 print()
 
-
 def overdimension(array,opcion,entero):
     cantidad_util=9
     if opcion=="a":
-        if cantidad_util>len(array):
-            print("ERROR! Se excedio el límite: No se pueden agregar mas elementos")
-        array[cantidad_util]=entero
-        cantidad_util=cantidad_util+1
+        numero=int(input("¿Que número desea agregar al vector?: "))
+        array[entero]=numero   
+        if entero>=cantidad_util:
+            cantidad_util=entero+1
+            if cantidad_util>len(array):
+               print("ERROR! Se excedio el límite: No se pueden agregar mas elementos")
+        
         for x in range(cantidad_util):
             print(array[x],end=" ")
-    elif opcion=="b"
+
+    elif opcion=="b":
+        for x in range(cantidad_util):
+            if array[x]==entero:
+                switch=array[x+1]
+                array[x+1]=array[x]
+                array[x]=switch
+
+        cantidad_util=cantidad_util-1
+        for x in range(cantidad_util):
+            print(array[x],end=" ")
+
+    elif opcion=="i":
+        posicion=int(input("¿En que posición desea insertar el elemento?: "))
+        ciclos=cantidad_util-posicion
+        posicion2=cantidad_util
+        for x in range(ciclos):
+            switch=array[posicion2]
+            array[posicion2]=array[posicion2-1]
+            array[posicion2-1]=switch
+            posicion2=posicion2-1
+
+        cantidad_util=cantidad_util+1
+        array[posicion]=entero
+        for x in range(cantidad_util):
+            print(array[x],end=" ")
+
 
 input()
-overdimension(array,"a",19)
+overdimension(array,"b",3)
+
 
