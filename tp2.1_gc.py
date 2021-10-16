@@ -143,22 +143,22 @@ input()
 
 filas=matrix2.shape[0]
 columnas=matrix2.shape[1]
-switch=np.array([0]*filas)
-posicion=0
-for f in range(filas):
-    switch[posicion]=matrix2[f,3]
-    posicion=posicion+1
+switch=np.array([0]*columnas)
+for f in range(filas-1):
     for c in range(columnas):
-        print(switch)
+        if matrix2[f,3]>matrix2[f+1,3]:
+            print("!",end=" ")
 
 
+for c in range(columnas):    
+    switch[c]=matrix2[2,c]
 
-"""
-        #if matrix2[f,3]>matrix2[f+1,3]:
-         #   switch[c]=matrix2[f,3]
-          #  print(switch)
-"""
+for c in range(columnas):
+    matrix2[2,c]=matrix2[2+1,c]
 
+for c in range(columnas):
+    matrix2[2+1,c]=switch[c]
+            
 input()
 
 for f in range(filas):
