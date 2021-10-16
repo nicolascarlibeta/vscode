@@ -7,11 +7,11 @@ import numpy as np, random, os
 #Ordenamiento completo
 
 #Se debera crear un vector terciario que acumule los valores de la matriz
-"""
+
 matrix=np.array([[5,1,6,2,4],[3,5,5,2,19]])
 tamaño=matrix.size
 vector=np.array([0]*tamaño)
-
+"""
 filas=matrix.shape[0]
 columnas=matrix.shape[1]
 for f in range(filas):
@@ -75,7 +75,7 @@ for f in range(filas):
     print()
 print()
 """
-"""
+
 matrix=np.array([[5,1,6,2,4],[3,5,5,2,19]])
 tamaño=matrix.size
 vector=np.array([0]*tamaño)
@@ -124,54 +124,60 @@ def complete_Ordering(matrix):
 #Ordenamos la columna
 #Si existe un valor mayor ante un valor menor, la fila se invierte
 #Asi, hasta que quede la columna ordenada
-"""
 
-matrix2=np.array([[1,1,6,2,4],[2,5,5,2,19],[2,4,5,6,9],[5,6,3,5,5]])
-    
 
-filas=matrix2.shape[0]
-columnas=matrix2.shape[1]
+matrix2=np.array([[4,6,7,4,2],[8,3,6,9,11],[2,1,5,14,9],[5,0,3,12,5]])
+
+
+def switch_Matray(matrix,f,columna):
+    columnas=matrix.shape[1]
+    switch=np.array([0]*columnas)
+    if matrix2[f,columna]>matrix2[f+1,columna]:
+        for j in range(columnas):
+            switch[j]=matrix[f,j]
+            matrix[f,j]=matrix[f+1,j]
+            matrix[f+1,j]=switch[j]
+
+
+def column_Ordering(matrix,columna):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for x in range(filas-1):
+        for f in range(filas-1):
+            for c in range(columnas):
+                switch_Matray(matrix,f,columna)
+            
+            
+
+#Ordenamiento por índice
+
+#Creamos un vector con la misma cantidad de filas
+#Buscamos de menor a mayor en la fila, y anotamos su posición
+#Agregamos las posiciones en un vector del mismo tamaño de filas
+
+
+
+matrix3=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
+
+filas=matrix3.shape[0]
+columnas=matrix3.shape[1]
+vector=np.array([" "*20]*filas)
 for f in range(filas):
     for c in range(columnas):
-        print(matrix2[f,c],end=" ")
+        print(matrix3[f,c],end=" ")
     print()
 print() 
 
-
 input()
 
-
-filas=matrix2.shape[0]
-columnas=matrix2.shape[1]
-switch=np.array([0]*columnas)
 for f in range(filas-1):
     for c in range(columnas):
-        if matrix2[f,3]>matrix2[f+1,3]:
-            print("!",end=" ")
-
-
-for c in range(columnas):    
-    switch[c]=matrix2[2,c]
-
-for c in range(columnas):
-    matrix2[2,c]=matrix2[2+1,c]
-
-for c in range(columnas):
-    matrix2[2+1,c]=switch[c]
-            
-input()
-
-for f in range(filas):
-    for c in range(columnas):
-        print(matrix2[f,c],end=" ")
-    print()
-print()
-
-
-
-
-
-
+        for x in range(filas-1):
+            if matrix3[f,0]<matrix3[f+1,0]:
+                vector[f]=matrix3[f,0]
+                matrix3[f,0]="zzz"
+                print(vector)
+    
 
 
 
@@ -184,16 +190,24 @@ def main_Menu():
     print()
     print("1. Mostrar por pantalla la matriz.")
     print("2. Ordenar completamente la matriz.")
+    print("3. Ordenar por columna.")
     print("0. Salir.")
     print()
 
     
 def buttons(opcion):
     if opcion==1:
-        display_Matray(matrix) 
+        print("Matriz #1")
+        display_Matray(matrix)
+        print("Matriz #2") 
+        display_Matray(matrix2) 
         print("Se han cargado exitosamente")
     elif opcion==2:
         complete_Ordering(matrix)   
+        print("Se ha ordenado exitosamente")
+    elif opcion==3:
+        columna=int(input("Por favor, ingrese la columna que desea ordenar: "))
+        column_Ordering(matrix2,columna)
         print("Se ha ordenado exitosamente")
 
 
