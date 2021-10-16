@@ -153,7 +153,7 @@ pair_Tensor(tensor)
 """
 
 #1)
-"""
+""" """
 matrix=np.array([[0]*10]*10)
 
 def load_Matray(matrix):
@@ -254,7 +254,7 @@ def mayor_fila(matrix,menor,fila):
     for x in range(columnas):
         if menor<matrix[fila,x]:
             return False
-    print("La matriz actual SI posee punto de silla, y es el número",menor)
+    
     return True
 
 
@@ -264,7 +264,13 @@ def saddle_Point(matrix):
     for x in range(filas):
         columna=columna+1
         matrix,minor,rows=menor_columna(matrix,columna)
-        mayor_fila(matrix,minor,rows)
+        sp=mayor_fila(matrix,minor,rows)
+        if sp==True:
+            print("La matriz actual SI posee punto de silla, y es el número",minor)
+            return True
+
+    if sp==False:
+        print("La matriz actual NO posee punto de silla.")
 
 
 def main_Menu():
@@ -315,7 +321,6 @@ def buttons(opcion):
         prime_Numbers(matrix)
         print()
     elif opcion==7:
-        print("Con la tecnología i+d de SaddlePoint.")
         saddle_Point(matrix)
 
 
@@ -326,7 +331,7 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
+
 
 #2)
 

@@ -64,32 +64,53 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-
+"""
 
 #2)
 
+#Mientras i<len(v1) and j<len(v2)			
+#	if v1[x]==v2[j]: se pasa el valor, y se suma el indice de los tres vectores		
+#	if v1[x]<v2[j]:		
+#	v3[x]=v1[x]
+#    		
+#Si se cierra el ciclo, se trasladan los numeros			
+#del vector	v1[0]<v2[1]		
+#	Se le suman los indices si es falso, para comparar con el siguiente		
+#	El vector 3 siempre suma su indice		
+# 
 
 array=[2,4,6,9]
 array2=[3,7,9,11,13,15]
 tamaño=len(array+array2)
 array3=[0]*tamaño
 
-def display_Array(array3):
-    for x in range(len(array3)):
-        print(array3[x], end=" ")
-
-
-def ordering(array,array2,array3):
-    posicion=0
+def display_Array(array):
     for x in range(len(array)):
-        array3[x]=array[x]
-    for j in range(len(array),tamaño):
-        array3[j]=array2[posicion]
-        posicion=posicion+1
-        
+        print(array[x], end=" ")
 
-    
+
+def ordering(array,array2):
+    x=0
+    j=0
+    k=0
+    while x<len(array) and j<len(array2):
+        if array[x]==array2[j]:
+            array3[k]=array[x]
+
+        elif array[x]<array2[j]:
+            array3[k]=array[x]
+            x=x+1
+            j=j+1
+            k=k+1
+        else:
+            array3[k]=array2[j]
+            j=j+1
+            k=k+1
+            
     return array3
+
+
+
         
 
 
@@ -108,11 +129,11 @@ def buttons(opcion):
         print()
         print("Vector #2")
         display_Array(array2)   
-        print()
+        print()  
         print("Se han cargado exitosamente")
     elif opcion==2:
-        array1=ordering(array,array2)
-        print("El vector",array1,"se ha cargado exitosamente")
+        array3=ordering(array,array2)
+        print("El vector",array3,"se ha cargado exitosamente")
 
 
 opcion=5
@@ -122,10 +143,10 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
+
 
 #4)
-
+"""
 array=[1,2,3,4,5,6,7,8,9,0,0]
 cantidad_util=9
 
@@ -176,4 +197,4 @@ def overdimension(array,opcion,entero):
 input()
 overdimension(array,"b",3)
 
-
+"""
