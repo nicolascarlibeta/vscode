@@ -158,33 +158,46 @@ def column_Ordering(matrix,columna):
 
 
 matrix3=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
+matrix4=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
+
+
+    
+def indexing_Ord(matrix,columna):
+    fila=0
+    row=0
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    menor=matrix[0,columna]
+    for f in range(filas):
+        for c in range(columnas):
+            if matrix[f,columna]<menor:
+                menor=matrix[f,columna]
+                fila=f
+                row=c
+
+    return fila,row
+
+def index_Ordering(matrix,columna):
+    filas=matrix.shape[0]
+    for x in range(filas):
+        fila,row=indexing_Ord(matrix,columna)
+        vector[x]=fila
+        matrix[fila,row]="zzzzz"
+
 
 filas=matrix3.shape[0]
 columnas=matrix3.shape[1]
-vector=np.array([" "*20]*filas)
-for f in range(filas):
-    for c in range(columnas):
-        print(matrix3[f,c],end=" ")
-    print()
-print() 
+for j in range(len(vector)):
+    print(matrix3[vector[j],vector[j]])
+
 
 input()
 
-for f in range(filas-1):
-    for c in range(columnas):
-        for x in range(filas-1):
-            if matrix3[f,0]<matrix3[f+1,0]:
-                vector[f]=matrix3[f,0]
-                matrix3[f,0]="zzz"
-                print(vector)
-    
 
 
 
 
 
-
-"""
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
@@ -209,6 +222,10 @@ def buttons(opcion):
         columna=int(input("Por favor, ingrese la columna que desea ordenar: "))
         column_Ordering(matrix2,columna)
         print("Se ha ordenado exitosamente")
+    elif opcion==4:
+        columna=int(input("Por favor, ingrese la columna que desea ordenar: "))
+        index_Ordering(matrix4,columna)
+        print("Se ha ordenado exitosamente")
 
 
 opcion=5
@@ -218,6 +235,6 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
+
 
 
