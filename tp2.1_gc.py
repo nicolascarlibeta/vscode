@@ -7,11 +7,11 @@ import numpy as np, random, os
 #Ordenamiento completo
 
 #Se debera crear un vector terciario que acumule los valores de la matriz
-
+"""
 matrix=np.array([[5,1,6,2,4],[3,5,5,2,19]])
 tamaño=matrix.size
 vector=np.array([0]*tamaño)
-"""
+
 filas=matrix.shape[0]
 columnas=matrix.shape[1]
 for f in range(filas):
@@ -146,7 +146,7 @@ def column_Ordering(matrix,columna):
         for f in range(filas-1):
             for c in range(columnas):
                 switch_Matray(matrix,f,columna)
-            
+           
             
 
 #Ordenamiento por índice
@@ -158,8 +158,6 @@ def column_Ordering(matrix,columna):
 
 
 matrix3=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
-matrix4=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
-
 
     
 def indexing_Ord(matrix,columna):
@@ -179,22 +177,24 @@ def indexing_Ord(matrix,columna):
 
 def index_Ordering(matrix,columna):
     filas=matrix.shape[0]
+    vector=np.array([0]*filas)
     for x in range(filas):
         fila,row=indexing_Ord(matrix,columna)
         vector[x]=fila
         matrix[fila,row]="zzzzz"
+    
+    return vector
+        
 
 
-filas=matrix3.shape[0]
-columnas=matrix3.shape[1]
-for j in range(len(vector)):
-    print(matrix3[vector[j],vector[j]])
-
-
-input()
-
-
-
+def display_Ordered_Array(matrix,vector):
+    filas=matrix3.shape[0]
+    columnas=matrix3.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[vector[f],c],end=" ")
+        print()
+    print()
 
 
 
@@ -204,16 +204,20 @@ def main_Menu():
     print("1. Mostrar por pantalla la matriz.")
     print("2. Ordenar completamente la matriz.")
     print("3. Ordenar por columna.")
+    print("4. Ordenar por índice.")
     print("0. Salir.")
     print()
 
     
 def buttons(opcion):
+    bandera=False
     if opcion==1:
         print("Matriz #1")
         display_Matray(matrix)
         print("Matriz #2") 
         display_Matray(matrix2) 
+        print("Matriz #3") 
+        display_Matray(matrix3)
         print("Se han cargado exitosamente")
     elif opcion==2:
         complete_Ordering(matrix)   
@@ -223,10 +227,14 @@ def buttons(opcion):
         column_Ordering(matrix2,columna)
         print("Se ha ordenado exitosamente")
     elif opcion==4:
+        matrix4=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
         columna=int(input("Por favor, ingrese la columna que desea ordenar: "))
-        index_Ordering(matrix4,columna)
+        vector=index_Ordering(matrix4,columna)
+        print()
+        print("Matriz #3 ya ordenada")
+        print()
+        display_Ordered_Array(matrix3,vector)
         print("Se ha ordenado exitosamente")
-
 
 opcion=5
 while opcion!=0:
