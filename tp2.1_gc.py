@@ -75,7 +75,7 @@ for f in range(filas):
     print()
 print()
 """
-
+"""
 matrix=np.array([[5,1,6,2,4],[3,5,5,2,19]])
 tamaño=matrix.size
 vector=np.array([0]*tamaño)
@@ -147,7 +147,7 @@ def column_Ordering(matrix,columna):
             for c in range(columnas):
                 switch_Matray(matrix,f,columna)
            
-            
+"""            
 
 #Ordenamiento por índice
 
@@ -158,6 +158,7 @@ def column_Ordering(matrix,columna):
 
 
 matrix3=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
+matrix4=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
 
     
 def indexing_Ord(matrix,columna):
@@ -168,23 +169,65 @@ def indexing_Ord(matrix,columna):
     menor=matrix[0,columna]
     for f in range(filas):
         for c in range(columnas):
-            if matrix[f,columna]<menor:
-                menor=matrix[f,columna]
+            if matrix[f,columna]<menor: 
+                menor=matrix[f,columna] 
                 fila=f
-                row=c
 
-    return fila,row
+    return fila
+
 
 def index_Ordering(matrix,columna):
     filas=matrix.shape[0]
     vector=np.array([0]*filas)
     for x in range(filas):
-        fila,row=indexing_Ord(matrix,columna)
+        fila=indexing_Ord(matrix,columna)
         vector[x]=fila
-        matrix[fila,row]="zzzzz"
+        matrix[fila,columna]="zzzzz"
     
     return vector
         
+vector=index_Ordering(matrix4,0)
+
+busqueda=input("Buscar...: ")
+
+def binary_Search(matrix,busqueda):
+    pi=0
+    pf=matrix.size-1
+    termino=False
+    while pi<=pf and not(termino):
+        medium=(pi+pf)//2
+
+        if matrix[medium]==busqueda:
+            termino=True
+
+        elif busqueda>matrix[medium]:
+            pi=medium+1
+
+        elif busqueda<matrix[medium]:
+            pf=medium-1
+    
+    return termino
+
+
+            
+
+
+def display_Ordered_Array(matrix,busqueda):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            quentin=binary_Search(matrix,busqueda)
+
+    return quentin
+
+
+quentin=display_Ordered_Array(matrix3,busqueda)
+
+if quentin:
+    print("Esta!")
+
+
 
 
 def display_Ordered_Array(matrix,vector):
@@ -198,6 +241,7 @@ def display_Ordered_Array(matrix,vector):
 
 
 
+"""
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
@@ -243,6 +287,6 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-
+"""
 
 
