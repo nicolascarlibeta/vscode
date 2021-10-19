@@ -4,7 +4,7 @@
 
 import os
 #Trabajo Práctico 1.2
-import random
+import random, numpy as np
 
 #1)
 
@@ -79,10 +79,9 @@ while opcion!=0:
 #	El vector 3 siempre suma su indice		
 # 
 
-array=[2,4,6,9]
-array2=[3,7,9,11,13,15]
-tamaño=len(array+array2)
-array3=[0]*tamaño
+array2=[4,9,13,25]
+array=[1,3,7,14,29,30]
+
 
 def display_Array(array):
     for x in range(len(array)):
@@ -92,33 +91,42 @@ def display_Array(array):
 def ordering(array,array2):
     x=0
     j=0
-    k=0
+    tamaño=len(array+array2)
+    array3=np.array([0]*tamaño)
+    k=-1
     while x<len(array) and j<len(array2):
+        k=k+1
         if array[x]==array2[j]:
             array3[k]=array[x]
 
         elif array[x]<array2[j]:
             array3[k]=array[x]
             x=x+1
-            j=j+1
-            k=k+1
         else:
             array3[k]=array2[j]
             j=j+1
-            k=k+1
+
+    def overstep(indice,longitud,posicion,vector3,vector):    
+        for z in range(indice,longitud):
+            posicion=posicion+1
+            vector3[posicion]=vector[z]
             
+    if x==len(array):
+        overstep(j,len(array2),k,array3,array2)
+    
+    elif j==len(array2):
+        overstep(x,len(array),k,array3,array)
+
+   
     return array3
 
-
-
-        
 
 
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
     print("1. Mostrar por pantalla los vectores.")
-    print("2. Ordenar dentro de un vector secundario.")
+    print("2. Ordenar dentro de un vector terciario.")
     print("0. Salir.")
     print()
 
