@@ -25,6 +25,13 @@ def load_Matray2(matrix):
         for c in range(columnas):
             matrix[f,c]=random.randint(1,50)
 
+def load_Matray3(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            matrix[f,c]=random.randint(1,50)
+
 def display_Matray(matrix):
     filas=matrix.shape[0]
     columnas=matrix.shape[1]
@@ -66,6 +73,42 @@ def sigma_Rows(matrix):
 #3)
 
 
+matrix3=np.array([[0]*3]*3)
+
+load_Matray3(matrix3)
+display_Matray(matrix3)
+
+input()
+
+
+switch=0
+filas=matrix3.shape[0]
+columnas=matrix3.shape[1]
+fila=-1
+for f in range(1):
+    fila=fila+1
+    for c in range(3):
+        if f!=c:
+            matrix3[f,c]=matrix3[f,c]+matrix3[f+1,fila]
+            matrix3[f+1,fila]=matrix3[f,c]-matrix3[f+1,fila]
+            matrix3[f,c]=matrix3[f,c]-matrix3[f+1,fila]
+
+
+
+input()
+
+display_Matray(matrix3)
+
+
+
+
+
+
+
+
+
+"""
+
 
 
 def main_Menu():
@@ -95,7 +138,7 @@ def trd_Menu():
     print()
     print("1. Cargar números.")
     print("2. Mostrar por pantalla.")
-    print("3. Calcular la suma de los números por filas y por columnas.")
+    print("3. Hacer la transpuesta de la matriz.")
     print("0. Volver al menú principal.")
     print()
 
@@ -124,10 +167,10 @@ def buttons2(opcion):
 
 def buttons3(opcion):
     if opcion==1:
-        load_Matray2(matrix2)  
+        load_Matray3(matrix3)  
         print("Se han cargado exitosamente")
     elif opcion==2:
-        display_Matray(matrix2)   
+        display_Matray(matrix3)   
         print()
         print("Se han cargado exitosamente")
     elif opcion==3:
@@ -163,3 +206,4 @@ while opcion!=0:
     buttons(opcion)
     input("Presione Inter para continuar: ")
 
+"""
