@@ -196,6 +196,7 @@ while opcion!=0:
 
 #1)
 
+"""
 matrix=np.array([[0]*10]*3)
 
 def load_Matray(matrix):
@@ -280,6 +281,157 @@ def buttons(opcion):
 
         
     
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
+
+
+#2)
+
+matrix=np.array([["abcdefgh"]*3]*20)
+
+
+def load_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(1):
+            nombre=input("Por favor, ingrese un nombre: ")
+            apellido=input("Por favor, ingrese un apellido: ")
+            documento=input("Por favor, ingrese un D.N.I.: ")
+            matrix[f,c]=nombre
+            matrix[f,c+1]=apellido
+            matrix[f,c+2]=documento
+
+
+def display_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[f,c],end=" ")
+        print()
+    print()
+
+
+def colsort_stepone(matrix,f,c):
+    columnas=matrix.shape[1]
+    switch=[0]*columnas
+    if matrix[f,c]>matrix[f+1,c]:
+        for x in range(columnas):
+            switch[x]=matrix[f,x]
+            matrix[f,x]=matrix[f+1,x]
+            matrix[f+1,x]=switch[x]
+
+
+def colsort_steptwo(matrix,columna):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas-1):
+        for c in range(columnas):
+            colsort_stepone(matrix,f,columna)
+
+
+def colsort(matrix,columna):           
+    filas=matrix.shape[0]
+    for x in range(filas-1):
+        colsort_steptwo(matrix,columna)
+
+
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar los datos personales.")
+    print("2. Mostrar los datos completos.")
+    print("3. Ordenar por: Apellido (A-Z).")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        load_Matray(matrix)  
+        print("Se han cargado exitosamente")
+    if opcion==2:
+        display_Matray(matrix)  
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        apellido=1
+        colsort(matrix,apellido)
+        
+    
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
+
+"""
+#3)
+
+matrix=np.array([[[0]*3]*20]*4)
+
+
+
+def load_Tensor(matrix):
+    hoja=matrix.shape[2]
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]    
+    for h in range(hoja):
+        for f in range(filas):
+            for c in range(columnas):
+                matrix[f,c,h]=random.randint(1,10)
+                
+
+def display_Tensor(matrix):
+    hoja=matrix.shape[2]
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]    
+    for h in range(hoja):
+        print("Universidad",h+100)
+        for f in range(filas):
+            for c in range(columnas):
+                print(matrix[f,c,h],end=" ")
+            print()
+        print()
+    print()
+
+
+def display_Tensorº(matrix):
+    hoja=matrix.shape[2]
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]    
+    for h in range(hoja):
+        for f in range(filas):
+            for c in range(columnas):
+                print("La nota del alumno",c,"del curso",f,"de la universidad",h,"es",matrix[f,c,h])
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar la planilla.")
+    print("2. Mostrar los datos completos.")
+    print("3. Ordenar por: Apellido (A-Z).")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        load_Tensor(matrix)  
+        print("Se han cargado exitosamente")
+    if opcion==2:
+        display_Tensor(matrix)   
+        print("Se han cargado exitosamente")
 
 opcion=5
 while opcion!=0:
