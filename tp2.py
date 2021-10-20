@@ -7,9 +7,10 @@
 import random, os, numpy as np
 
 #1)
-
+"""
 matrix=np.array([[0]*4]*3)
 matrix2=np.array([[0]*3]*3)
+matrix3=np.array([[0]*3]*3)
 
 def load_Matray(matrix):
     filas=matrix.shape[0]
@@ -72,42 +73,22 @@ def sigma_Rows(matrix):
 
 #3)
 
+def permutation(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas-1):
+        for c in range(columnas):
+            if f!=c and f!=1:
+                matrix[f,c]=matrix[f,c]+matrix[c,f]
+                matrix[c,f]=matrix[f,c]-matrix[c,f]
+                matrix[f,c]=matrix[f,c]-matrix[c,f]
+            elif c==2:
+                matrix[f,c]=matrix[f,c]+matrix[c,f]
+                matrix[c,f]=matrix[f,c]-matrix[c,f]
+                matrix[f,c]=matrix[f,c]-matrix[c,f]
 
-matrix3=np.array([[0]*3]*3)
+    return matrix
 
-load_Matray3(matrix3)
-display_Matray(matrix3)
-
-input()
-
-
-switch=0
-filas=matrix3.shape[0]
-columnas=matrix3.shape[1]
-fila=-1
-for f in range(1):
-    fila=fila+1
-    for c in range(3):
-        if f!=c:
-            matrix3[f,c]=matrix3[f,c]+matrix3[f+1,fila]
-            matrix3[f+1,fila]=matrix3[f,c]-matrix3[f+1,fila]
-            matrix3[f,c]=matrix3[f,c]-matrix3[f+1,fila]
-
-
-
-input()
-
-display_Matray(matrix3)
-
-
-
-
-
-
-
-
-
-"""
 
 
 
@@ -174,7 +155,8 @@ def buttons3(opcion):
         print()
         print("Se han cargado exitosamente")
     elif opcion==3:
-        3
+        permutation(matrix3)
+        print("Se han cargado exitosamente")
 
 
 def buttons(opcion):
@@ -207,3 +189,102 @@ while opcion!=0:
     input("Presione Inter para continuar: ")
 
 """
+
+#----------------------------------------------------------------
+#Ejercicios Adicionales
+
+
+#1)
+
+matrix=np.array([[0]*10]*3)
+
+def load_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            matrix[f,c]=random.randint(19,34)
+
+def display_Matray(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[f,c],end=" ")
+        print()
+    print()
+
+
+def promedio(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    suma=0
+    for f in range(filas):
+        for c in range(columnas):
+            suma=suma+matrix[f,c]
+
+    return suma
+
+
+def maxymin_temperatura(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    mayor=matrix[0,0]
+    menor=matrix[0,0]
+    contador=0
+    contador2=0
+    dia=0
+    dia2=0
+    for f in range(filas):
+        for c in range(columnas):
+            if matrix[f,c]>mayor:
+                mayor=matrix[f,c]
+                dia=contador
+            elif matrix[f,c]<menor:
+                menor=matrix[f,c]
+                dia2=contador2
+
+            contador=contador+1
+            contador2=contador2+1
+    return mayor,dia,menor,dia2
+
+
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar las temperaturas minimas y máximas del mes.")
+    print("2. Mostrar el calendario.")
+    print("3. Calcular el promedio total de temperaturas.")
+    print("4. Informar el dia de máxima y minima temperatura.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        load_Matray(matrix)  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        display_Matray(matrix)   
+        print()
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        suma=promedio(matrix)
+        prmd=suma/matrix.size
+        print("El promedio de temperaturas total del mes es de:",prmd)
+    elif opcion==4:
+        mayor,dia,menor,dia2=maxymin_temperatura(matrix)
+        print("El dia de máxima temperatura fue el",dia,"con una temperatura de",mayor,"grados")
+        print("El dia de minima temperatura fue el",dia2,"con una temperatura de",menor,"grados")
+
+        
+    
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
