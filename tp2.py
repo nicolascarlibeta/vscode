@@ -500,21 +500,44 @@ def curso(matrix,hj):
     print()
 
 
+def bubsort(array): 
+    termino=False
+    lenght=len(array)
+    while not(termino):
+        lenght=lenght-1
+        termino=True
+        for x in range(lenght):
+            if array[x+1]>array[x]:
+                switch=array[x+1]
+                array[x+1]=array[x]
+                array[x]=switch
+                termino=False
+
+
 def mayor_centro(matrix,notas,notas2,notas3):
-    vector=[0]*3
-    if notas>notas2 and notas>notas3:
+    vector=np.array([notas,notas2,notas3])
+    bubsort(vector) #Ordenar el vector#----------------
+    #Posición 1#--------------------------
+    if vector[0]==notas:
         print("Universidad 100")
         curso(matrix,0)
-    elif notas2>notas and notas2>notas3:
+    elif vector[0]==notas2:
         print("Universidad 101")
         curso(matrix,1)
-    elif notas3>notas and notas3>notas2:
+    elif vector[0]==notas3:
         print("Universidad 102")
         curso(matrix,2)
-
-
+    #Posición 2#--------------------------
+    if vector[1]==notas:
+        print("Universidad 100")
+        curso(matrix,0)
+    elif vector[1]==notas2:
+        print("Universidad 101")
+        curso(matrix,1)
+    elif vector[1]==notas3:
+        print("Universidad 102")
+        curso(matrix,2)
     
-
 
 
 def main_Menu():
@@ -554,7 +577,8 @@ def buttons(opcion):
         suma=promedioxCentro2(matrix,0)
         suma2=promedioxCentro2(matrix,1)
         suma3=promedioxCentro2(matrix,2)
-        print("Los dos centros con mejor calificación son: ")
+        print("Los dos centros con la mejor calificación son: ")
+        print()
         mayor_centro(matrix,suma,suma2,suma3)
 
 opcion=5
