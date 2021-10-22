@@ -75,7 +75,7 @@ for f in range(filas):
     print()
 print()
 """
-"""
+
 matrix=np.array([[5,1,6,2,4],[3,5,5,2,19]])
 tamaño=matrix.size
 vector=np.array([0]*tamaño)
@@ -147,7 +147,7 @@ def column_Ordering(matrix,columna):
             for c in range(columnas):
                 switch_Matray(matrix,f,columna)
            
-"""            
+            
 
 #Ordenamiento por índice
 
@@ -158,12 +158,10 @@ def column_Ordering(matrix,columna):
 
 
 matrix3=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
-matrix4=np.array([["Go With The Flow","2002"],["Anthem","2009"],["Higher Ground","1989"],["In Bloom","1991"],["I Can't Hear You","2006"]])
-
     
+
 def indexing_Ord(matrix,columna):
     fila=0
-    row=0
     filas=matrix.shape[0]
     columnas=matrix.shape[1]
     menor=matrix[0,columna]
@@ -186,48 +184,25 @@ def index_Ordering(matrix,columna):
     
     return vector
         
-vector=index_Ordering(matrix4,0)
 
-busqueda=input("Buscar...: ")
 
-def binary_Search(matrix,busqueda):
+def binary_Search(vector,matrix,busqueda,columna):
     pi=0
-    pf=matrix.size-1
+    pf=len(vector)-1
     termino=False
     while pi<=pf and not(termino):
         medium=(pi+pf)//2
-
-        if matrix[medium]==busqueda:
+        
+        if busqueda==matrix[vector[medium],columna]:
             termino=True
 
-        elif busqueda>matrix[medium]:
+        elif busqueda>matrix[vector[medium],columna]:
             pi=medium+1
 
-        elif busqueda<matrix[medium]:
+        elif busqueda<matrix[vector[medium],columna]:
             pf=medium-1
     
     return termino
-
-
-            
-
-
-def display_Ordered_Array(matrix,busqueda):
-    filas=matrix.shape[0]
-    columnas=matrix.shape[1]
-    for f in range(filas):
-        for c in range(columnas):
-            quentin=binary_Search(matrix,busqueda)
-
-    return quentin
-
-
-quentin=display_Ordered_Array(matrix3,busqueda)
-
-if quentin:
-    print("Esta!")
-
-
 
 
 def display_Ordered_Array(matrix,vector):
@@ -241,14 +216,14 @@ def display_Ordered_Array(matrix,vector):
 
 
 
-"""
+
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
     print("1. Mostrar por pantalla la matriz.")
     print("2. Ordenar completamente la matriz.")
     print("3. Ordenar por columna.")
-    print("4. Ordenar por índice.")
+    print("4. Ordenar por índice y buscar por columna.")
     print("0. Salir.")
     print()
 
@@ -279,6 +254,14 @@ def buttons(opcion):
         print()
         display_Ordered_Array(matrix3,vector)
         print("Se ha ordenado exitosamente")
+        input("Presione Inter para continuar: ")
+        os.system("cls")
+        busqueda=input("Buscar...: ")
+        if binary_Search(vector,matrix3,busqueda,columna):
+            print("El elemento que busca SI se encuentra en la columna")
+        else:
+            print("El elemento que busca NO se encuentra en la columna")
+
 
 opcion=5
 while opcion!=0:
@@ -287,6 +270,6 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
+
 
 
