@@ -6,6 +6,7 @@ import os
 #Trabajo Práctico 1.2
 import random, numpy as np
 
+
 #1)
 
 """
@@ -64,7 +65,7 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
+
 
 #2)
 
@@ -80,7 +81,7 @@ while opcion!=0:
 # 
 
 array2=[4,9,13,25]
-array=[1,3,7,14,29,30]
+array=[1,3,9,14,29,30]
 
 
 def display_Array(array):
@@ -98,7 +99,9 @@ def ordering(array,array2):
         k=k+1
         if array[x]==array2[j]:
             array3[k]=array[x]
-
+            x=x+1
+            j=j+1
+            
         elif array[x]<array2[j]:
             array3[k]=array[x]
             x=x+1
@@ -151,10 +154,45 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-
-
-#4)
 """
+
+#3)
+
+
+ape=np.array(["Figo","Piero","Claus","Kiuffo","Paglieri"])
+nom=np.array(["Juan","Fernando","Raul","Rico","Neo"])
+
+def bubsort(array): 
+    termino=False
+    lenght=len(array)
+    while not(termino):
+        lenght=lenght-1
+        termino=True
+        for x in range(lenght):
+            if array[x]>array[x+1]:
+                switch=array[x]
+                array[x]=array[x+1]
+                array[x+1]=switch
+                termino=False
+
+bubsort(ape)
+print(ape)
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+#4)
+
 array=[1,2,3,4,5,6,7,8,9,0,0]
 cantidad_util=9
 
