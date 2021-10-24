@@ -219,19 +219,23 @@ def tfe_Multiples(matrix):
 
 #d)
 def prime_Id(matrix,f,c):
+    termino=False
+    contador=2
     if matrix[f,c]<2:
-        return False
-    for x in range(2,matrix[f,c]):
-        if (matrix[f,c]%x)==0:
-            return False
-    return True
+        termino=True
+    while contador<matrix[f,c] and not(termino):
+        if (matrix[f,c]%contador)==0:
+            termino=True
+        contador=contador+1
+
+    return termino
 
 def prime_Numbers(matrix):
     filas=matrix.shape[0]
     columnas=matrix.shape[1]
     for f in range(filas):
         for c in range(columnas):
-            if prime_Id(matrix,f,c)==True:
+            if prime_Id(matrix,f,c)==False:
                     print(matrix[f,c],end=". ")
     
 #e)
@@ -251,25 +255,32 @@ def menor_columna(matrix,columna):
 
 def mayor_fila(matrix,menor,fila):
     columnas=matrix.shape[1]
-    for x in range(columnas):
-        if menor<matrix[fila,x]:
-            return False
+    termino=False
+    contador=0
+    while contador<columnas and not(termino):
+        if menor<matrix[fila,contador]:
+            termino=True
+        contador=contador+1
+
     
-    return True
+    return termino
 
 
 def saddle_Point(matrix):      
     filas=matrix.shape[0]
     columna=-1
-    for x in range(filas):
+    termino=False
+    contador=0
+    while contador<filas and not(termino):
         columna=columna+1
         matrix,minor,rows=menor_columna(matrix,columna)
         sp=mayor_fila(matrix,minor,rows)
-        if sp==True:
+        if sp==False:
             print("La matriz actual SI posee punto de silla, y es el número",minor)
-            return True
+            termino=True
+        contador=contador+1
 
-    if sp==False:
+    if sp==True:
         print("La matriz actual NO posee punto de silla.")
 
 
