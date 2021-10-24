@@ -156,44 +156,51 @@ colList=[a[x,col] for x in range(2)]
 print(colList)
 """
 
+matrix=np.array([[0]*5]*5)
 
+filas=matrix.shape[0]
+columnas=matrix.shape[1]
 
-"""
-vector=np.array([2,3,4,5,6,7,8,9,10])
-#matrix=np.array([[2,3,4],[5,6,7]])
+def load(matrix):
+    for f in range(filas):
+        for c in range(columnas):
+            matrix[f,c]=random.randint(1,14)
 
-#filas=matrix.shape[0]
-#columnas=matrix.shape[1]
+def mayor(matrix,f,c):
+    columnas=matrix.shape[1]
+    switch=[0]*columnas
+    if matrix[f,c]>matrix[f+1,c]:
+        for x in range(columnas):
+            switch[x]=matrix[f,x]
+            matrix[f,x]=matrix[f+1,x]
+            matrix[f+1,x]=switch[x]
 
-
-for f in range(filas):
-    for c in range(columnas):
-        print(matrix[f,c],end=" ")
+def major(matrix):
+    for x in range(filas):
+        for f in range(filas-1):
+            for c in range(columnas):
+                mayor(matrix,f,1)
+        
+def display(matrix):
+    for f in range(filas):
+        for c in range(columnas):
+            print(matrix[f,c],end=" ")
+        print()
     print()
-print()
 
-
+load(matrix)
+display(matrix)
+input()
+major(matrix)
+display(matrix)
 
 
        
-vector2=[0]*len(vector)
-def prime_number(matrix):
-    posicion=-1
-    for x in range(len(matrix)):
-        posicion=posicion+1
-        for j in range(2,matrix[posicion]):
-            if (matrix[posicion]%j)==0:
-                vector2[posicion]=matrix[posicion]
-    print(vector2)
 
 
+                    
 
-prime_number(vector)
-"""
-
-
-
-matrix=np.array([[0]*5]*5)
+            
 
 
 
