@@ -154,17 +154,19 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
 
 #3)
 
+nombre=["Jacques","Martyr","Godrick","Parvati","Lorelei"]
+apellido=["Perrault","Van Sant","Ginette","Singh","Williams"]
 
-ape=np.array(["Figo","Piero","Claus","Kiuffo","Paglieri"])
-nom=np.array(["Juan","Fernando","Raul","Rico","Neo"])
+def display_Array(array,array2):
+    for x in range(len(array)):
+        print(array[x],array2[x])
 
-def bubsort(array): 
-    termino=False
+def bublist(array,array2):
     lenght=len(array)
+    termino=False
     while not(termino):
         lenght=lenght-1
         termino=True
@@ -173,24 +175,38 @@ def bubsort(array):
                 switch=array[x]
                 array[x]=array[x+1]
                 array[x+1]=switch
+                switch2=array2[x]
+                array2[x]=array2[x+1]
+                array2[x+1]=switch2
                 termino=False
 
-bubsort(ape)
-print(ape)
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Mostrar los nombres y apellidos.")
+    print("2. Ordenar el listado por apellido.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        print("Apellidos","Nombres")
+        display_Array(apellido,nombre)
+        print() 
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        bublist(apellido,nombre)
+        print("Se han cargado exitosamente")
 
 
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-0): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
 
-
-
-
-
-
-
-
-
-
-
-"""
 #4)
 
 array=[1,2,3,4,5,6,7,8,9,0,0]
@@ -239,8 +255,151 @@ def overdimension(array,opcion,entero):
         for x in range(cantidad_util):
             print(array[x],end=" ")
 
-
 input()
 overdimension(array,"b",3)
 
+
+#----------------------------------------------------------------
+#Ejercicios Adicionales
+
+
+#1)
+
+vec1=[15,13,9,4,2]
+vec2=[11,10,9,3,2]
+
+def display_Array(array):
+    for x in range(len(array)):
+        print(array[x],end=" ")
+    print()
+
+
+def repeated_Array(vec1,vec2):
+    vec3=[0]*len(vec1) or len(vec2)
+    k=-1
+    l=0
+    for j in range(len(vec1) or len(vec2)):
+        k=k+1
+        for x in range(len(vec1) or len(vec2)):
+            if vec1[k]==vec2[x]:
+                vec3[l]=vec1[k]
+                l=l+1
+
+    return vec3
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Mostrar por pantalla los vectores.")
+    print("2. Ordenar los números repetidos dentro de un vector terciario.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        print()
+        print("Vector #1")
+        display_Array(vec1) 
+        print()
+        print("Vector #2")
+        display_Array(vec2)  
+        print()  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        vec3=repeated_Array(vec1,vec2)
+        print("El vector",vec3,"se ha cargado exitosamente")
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-0): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
 """
+
+#2)
+
+
+dockets=[0]*5
+notes=[0]*(len(dockets)*3)
+
+
+def load_Array(array,array2):
+    for x in range(len(array)):
+        array[x]=random.randint(14859,18493)
+    for j in range(len(array2)):
+        array2[j]=random.randint(1,10)
+
+
+def display_Array(array,array2):
+    posicion=0
+    contador=0
+    for x in range(len(array)):
+        print("Legajo",array[x])
+        print("Notas: ",end="")
+        contador=0
+        while contador<3:
+            print(array2[posicion],end=" ")
+            posicion=posicion+1
+            contador=contador+1
+        print()
+        print()
+
+def display_Array2(array,array2):
+    for x in range(len(array)):
+        print(array[x],array2[x])
+
+
+def promedio(array,array2):
+    posicion=-1
+    contador=-1
+    suma=[0]*len(array)
+    for j in range(len(suma)):
+        contador=contador+1
+        for x in range(3):
+            posicion=posicion+1
+            suma[contador]=suma[contador]+array2[posicion]
+        
+    for x in range(len(suma)):
+        suma[x]=suma[x]/3
+
+    return suma
+
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar la planilla completa.")
+    print("2. Mostrar legajos y notas correspondientes.")
+    print("3. Calcular el promedio de cada alumno y mostrar el listado.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        load_Array(dockets,notes) 
+        print("Se han cargado exitosamente")
+    if opcion==2:
+        os.system("cls")
+        print("PLANILLA COMPLETA: ")
+        display_Array(dockets,notes)   
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        print("Legajos","Promedio")
+        prmd=promedio(dockets,notes)
+        display_Array2(dockets,prmd)
+        print()
+        print("Se han cargado exitosamente")
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-0): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
