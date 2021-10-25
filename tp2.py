@@ -404,72 +404,44 @@ def display_Tensor(matrix):
     print()
 
 
-def display_Tensorº(matrix):
-    hoja=matrix.shape[2]
-    filas=matrix.shape[0]
-    columnas=matrix.shape[1]    
-    for h in range(hoja):
-        for f in range(filas):
-            for c in range(columnas):
-                print("La nota del alumno",c,"del curso",f,"de la universidad",h,"es",matrix[f,c,h])
 
-
-def promedioxCurso2(matrix,fila):
-    hoja=matrix.shape[2]
-    filas=matrix.shape[0]
-    columnas=matrix.shape[1]    
-    suma=0
-    for h in range(hoja):
-        for f in range(1):
-            for c in range(columnas):
-                    suma=suma+matrix[fila,c,h]
-            
-    return suma
-
-
-def promedioxCentro2(matrix,hoja):
-    filas=matrix.shape[0]
-    columnas=matrix.shape[1]    
-    suma=0
-    for h in range(1):
-        for f in range(filas):
-            for c in range(columnas):
-                    suma=suma+matrix[f,c,hoja]
-            
-    return suma
-
-
-#-----------------------------------
-# Promedio por curso
 def promedioxCurso(matrix):
     hoja=matrix.shape[2]
-    columnas=matrix.shape[1] 
-    cantidad=hoja*columnas
-    suma=promedioxCurso2(matrix,0)
-    promedio=suma/cantidad
-    suma2=promedioxCurso2(matrix,1)
-    promedio2=suma2/cantidad
-    suma3=promedioxCurso2(matrix,2)
-    promedio3=suma3/cantidad
-    suma4=promedioxCurso2(matrix,3)
-    promedio4=suma4/cantidad
-    return promedio,promedio2,promedio3,promedio4
-#----------------------------------
-
-#-----------------------------------
-# Promedio por centro
-def promedioxCentro(matrix):
     filas=matrix.shape[0]
-    columnas=matrix.shape[1] 
+    columnas=matrix.shape[1]
+    contador=-1
+    suma=[0]*filas
+    cantidad=hoja*columnas
+    for f in range(filas):
+        contador=contador+1
+        for h in range(hoja):
+            for c in range(columnas):
+                suma[contador]=suma[contador]+matrix[f,c,h]
+    
+    
+    for x in range(len(suma)):
+        suma[x]=suma[x]/cantidad
+    
+    return suma
+
+  
+def promedioxCentro(matrix):
+    hoja=matrix.shape[2]
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]    
+    posicion=-1
+    suma=[0]*hoja
     cantidad=filas*columnas
-    suma=promedioxCentro2(matrix,0)
-    promedio=suma/cantidad
-    suma2=promedioxCentro2(matrix,1)
-    promedio2=suma2/cantidad
-    suma3=promedioxCentro2(matrix,2)
-    promedio3=suma3/cantidad
-    return promedio,promedio2,promedio3
-#----------------------------------
+    for h in range(hoja):
+        posicion=posicion+1
+        for f in range(filas):
+            for c in range(columnas):
+                    suma[posicion]=suma[posicion]+matrix[f,c,h]
+            
+    for x in range(len(suma)):
+        suma[x]=suma[x]/cantidad
+    
+    return suma
 
 
 def sigma_Tensor(matrix):
@@ -514,27 +486,27 @@ def bubsort(array):
                 termino=False
 
 
-def mayor_centro(matrix,notas,notas2,notas3):
-    vector=np.array([notas,notas2,notas3])
+def mayor_centro(matrix,array):
+    vector=np.array([array[0],array[1],array[2]])
     bubsort(vector) #Ordenar el vector#----------------
     #Posición 1#--------------------------
-    if vector[0]==notas:
+    if vector[0]==array[0]:
         print("Universidad 100")
         curso(matrix,0)
-    elif vector[0]==notas2:
+    elif vector[0]==array[1]:
         print("Universidad 101")
         curso(matrix,1)
-    elif vector[0]==notas3:
+    elif vector[0]==array[2]:
         print("Universidad 102")
         curso(matrix,2)
     #Posición 2#--------------------------
-    if vector[1]==notas:
+    if vector[1]==array[0]:
         print("Universidad 100")
         curso(matrix,0)
-    elif vector[1]==notas2:
+    elif vector[1]==array[1]:
         print("Universidad 101")
         curso(matrix,1)
-    elif vector[1]==notas3:
+    elif vector[1]==array[2]:
         print("Universidad 102")
         curso(matrix,2)
     
@@ -560,26 +532,24 @@ def buttons(opcion):
         display_Tensor(matrix)   
         print("Se han cargado exitosamente")
     if opcion==3:
-        promedio,promedio2,promedio3,promedio4=promedioxCurso(matrix)
-        print("La nota promedio del 1er curso es de: ",promedio)
-        print("La nota promedio del 2do curso es de: ",promedio2)
-        print("La nota promedio del 3er curso es de: ",promedio3)
-        print("La nota promedio del 4to curso es de: ",promedio4)
+        promedio=promedioxCurso(matrix)
+        print("La nota promedio del 1er curso es de: ",promedio[0])
+        print("La nota promedio del 2do curso es de: ",promedio[1])
+        print("La nota promedio del 3er curso es de: ",promedio[2])
+        print("La nota promedio del 4to curso es de: ",promedio[3])
     if opcion==4:
-        promedion,promediotw,promedioth=promedioxCentro(matrix)
-        print("La nota promedio de la universidad 100 es de: ",promedion)
-        print("La nota promedio de la universidad 101 es de: ",promediotw)
-        print("La nota promedio de la universidad 102 es de: ",promedioth)
+        promedioc=promedioxCentro(matrix)
+        print("La nota promedio de la universidad 100 es de: ",promedioc[0])
+        print("La nota promedio de la universidad 101 es de: ",promedioc[1])
+        print("La nota promedio de la universidad 102 es de: ",promedioc[2])
     if opcion==5:
         promediot=sigma_Tensor(matrix)
         print("La nota promedio en general es de: ",promediot)
     if opcion==6:
-        suma=promedioxCentro2(matrix,0)
-        suma2=promedioxCentro2(matrix,1)
-        suma3=promedioxCentro2(matrix,2)
+        promedioc=promedioxCentro(matrix)
         print("Los dos centros con la mejor calificación son: ")
         print()
-        mayor_centro(matrix,suma,suma2,suma3)
+        mayor_centro(matrix,promedioc)
 
 opcion=5
 while opcion!=0:
