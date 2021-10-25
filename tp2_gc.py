@@ -366,12 +366,30 @@ def display_Matray(matrix):
         print()
     print() 
 
+#a)
+def interchange(matrix,f,c):
+    switch=np.array([0])
+    switch[0]=switch[0]+matrix[f,c]
+    matrix[f,c]=matrix[c,f]
+    matrix[c,f]=switch[0]
+
+def trainspotting(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    columna=0
+    for f in range(filas):
+        columna=columna+1
+        for c in range(columna,columnas):
+            interchange(matrix,f,c)
+            
+
 
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
-    print("1. Cargar la matriz.")
+    print("1. Cargar la matriz de 3x3.")
     print("2. Mostrar por pantalla la matriz.")
+    print("3. Realizar la transpuesta de la matriz.")
     print("0. Salir.")
     print()
 
@@ -384,6 +402,9 @@ def buttons(opcion):
         print()
         display_Matray(matrix)   
         print()
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        trainspotting(matrix)   
         print("Se han cargado exitosamente")
 
 
