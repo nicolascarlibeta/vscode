@@ -7,10 +7,10 @@
 import random, os, numpy as np
 
 #1)
-"""
+
 matrix=np.array([[0]*4]*3)
 matrix2=np.array([[0]*3]*3)
-matrix3=np.array([[0]*3]*3)
+matrix3=np.array([[0]*5]*5)
 
 def load_Matray(matrix):
     filas=matrix.shape[0]
@@ -73,23 +73,24 @@ def sigma_Rows(matrix):
 
 #3)
 
+def interchange(matrix,f,c):
+    switch=np.array([0])
+    switch[0]=switch[0]+matrix[f,c]
+    matrix[f,c]=matrix[c,f]
+    matrix[c,f]=switch[0]
+
 def permutation(matrix):
     filas=matrix.shape[0]
     columnas=matrix.shape[1]
-    for f in range(filas-1):
-        for c in range(columnas):
-            if f!=c and f!=1:
-                matrix[f,c]=matrix[f,c]+matrix[c,f]
-                matrix[c,f]=matrix[f,c]-matrix[c,f]
-                matrix[f,c]=matrix[f,c]-matrix[c,f]
-            elif c==2:
-                matrix[f,c]=matrix[f,c]+matrix[c,f]
-                matrix[c,f]=matrix[f,c]-matrix[c,f]
-                matrix[f,c]=matrix[f,c]-matrix[c,f]
+    columna=-1
+    for f in range(filas):
+        columna=columna+1
+        for c in range(columna,columnas):
+            display_Matray(matrix)
+            input()
+            interchange(matrix,f,c)
 
     return matrix
-
-
 
 
 def main_Menu():
@@ -117,9 +118,9 @@ def snd_Menu():
 def trd_Menu():
     print(">>>SIGUIENTE>>")
     print()
-    print("1. Cargar números.")
+    print("1. Cargar la matriz cuadrada.")
     print("2. Mostrar por pantalla.")
-    print("3. Hacer la transpuesta de la matriz.")
+    print("3. Hacer la transpuesta de la matriz por permutación doble.")
     print("0. Volver al menú principal.")
     print()
 
@@ -188,7 +189,7 @@ while opcion!=0:
     buttons(opcion)
     input("Presione Inter para continuar: ")
 
-"""
+
 
 #----------------------------------------------------------------
 #Ejercicios Adicionales
@@ -375,7 +376,7 @@ while opcion!=0:
     buttons(opcion)
     input("Presione Inter para continuar: ")
 
-"""
+
 #3)
 
 matrix=np.array([[[0]*3]*20]*4)
@@ -558,3 +559,4 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
+"""
