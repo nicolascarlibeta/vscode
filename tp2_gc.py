@@ -151,9 +151,10 @@ display_Tensor(tensor)
 input()
 pair_Tensor(tensor)
 """
-
+"""
 #1)
-""" """
+""" 
+"""
 matrix=np.array([[0]*10]*10)
 
 def load_Matray(matrix):
@@ -342,11 +343,12 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-
+"""
 
 #2)
 
-matrix=np.array([[0]*3]*3)
+#matrix=np.array([[0]*3]*3)
+matrix2=np.array([[2,-3,5],[-1,0,-3],[4,-2,1],[2,-3,5],[-1,0,-3]])
 
 
 def load_Matray(matrix):
@@ -366,6 +368,7 @@ def display_Matray(matrix):
         print()
     print() 
 
+"""
 #a)
 def interchange(matrix,f,c):
     switch=np.array([0])
@@ -381,9 +384,76 @@ def trainspotting(matrix):
         columna=columna+1
         for c in range(columna,columnas):
             interchange(matrix,f,c)
+"""   
+#b)
+  
+def determinante(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    diagonprincipal=1
+    diagonparalela=1
+    diagonparalela2=1
+    for f in range(filas):
+        for c in range(columnas):
+            if f==c:
+                diagonprincipal=diagonprincipal*matrix[f,c]
             
+            elif f==c+1:
+                diagonparalela=diagonparalela*matrix[f,c]
+
+            elif f==c+2:
+                diagonparalela2=diagonparalela2*matrix2[f,c]
+
+    return diagonprincipal,diagonparalela,diagonparalela2      
 
 
+def determinante2(matrix):
+    filas=matrix.shape[0]
+    columnas=matrix.shape[1]
+    diagonsecundaria=1
+    columna=3
+    for f in range(3):
+        columna=columna-1
+        for c in range(1):
+            diagonsecundaria=diagonsecundaria*matrix[f,columna]
+    
+    dgp1=1
+    for f in range(1,3+1):
+        columna=columna-1
+        for c in range(1):
+            dgp1=dgp1*matrix[f,columna]
+    
+    dgp2=1
+    for f in range(2,3+2):
+        columna=columna-1
+        for c in range(1):
+            dgp2=dgp2*matrix[f,columna]
+    
+    return diagonsecundaria,dgp2
+
+        
+    
+
+  
+display_Matray(matrix2)
+input()
+diagonal,diagonal2,diagonal3=determinante(matrix2)
+print(diagonal,diagonal2,diagonal3)
+input()
+diagonalsec,dgp2=determinante2(matrix2)
+print(diagonalsec,dgp2)
+
+
+
+
+
+
+
+
+
+
+
+"""
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
@@ -415,3 +485,4 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
+"""
