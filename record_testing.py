@@ -24,16 +24,13 @@ recordio.practical=8.5 #------Accedo al campo "practical" y le asigno un valor
 recarray=np.array([recordio]*5) #----Vector de registros
 
 #Imprimir un vector de registros
-
-
-
 def loadrecay(recarray):
     for x in range(len(recarray)):
+        recarray[x]=recordio() #Agregamos esta linea para inicializar el registro en el vector
         recarray[x].names=input("Por favor, ingrese un nombre: ")
         recarray[x].surnames=input("Por favor, ingrese un apellido: ")
         recarray[x].theorical=float(input("Por favor, ingrese la nota teórica: "))
         recarray[x].practical=float(input("Por favor, ingrese la nota práctica: "))
-
 
 def disrecay(recarray):
     for j in range(len(recarray)):
