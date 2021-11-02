@@ -8,27 +8,28 @@ import numpy as np, os, random
 
 #1)
 
-nodes=np.array([0]*3)
-
 reg=Record.create_type("reg",
 "docket",
 "name",
 "surname",
 "notes",
-docket=1,
+docket=0,
 name="",
 surname="",
-notes=np.array([0]*3))
+notes=0)
 
 record=reg
 
-recay=np.array([record]*3)
+recay=np.array([record]*10)
 
 def load(array):
+    numero=1
+    nodes=np.array([0]*3)
     for x in range(len(array)):
         array[x]=reg()
-        array[x].notes[x]=nodes()
-        array[x].docket=array[x].docket+100
+        array[x].docket=array[x].docket+numero
+        numero=numero+100
+        array[x].notes=array[x].notes+nodes
         array[x].name=input("Por favor, ingrese un nombre: ")
         array[x].surname=input("Por favor, ingrese un apellido: ")
         array[x].notes[0]=int(input("Por favor, ingrese la nota 1: "))
@@ -39,9 +40,9 @@ def load(array):
 def average(array,posicion):
     suma=0
     condicion=""
-    for j in range(len(array)):
+    for j in range(3):
         suma=suma+array[posicion].notes[j]
-    promedio=suma/len(array)
+    promedio=suma/3
 
     if promedio>=7:
         condicion="Promovido"
@@ -54,14 +55,12 @@ def average(array,posicion):
     return promedio,condicion
 
 
-
 def display(array):
+    posicion=0
     for x in range(len(array)):
-        print(array[x].docket,array[x].name,array[x].surname,
-        array[x].notes[0],
-        array[x].notes[1],
-        array[x].notes[2])
-
+        promedio,condicion=average(recay,posicion)
+        print(array[x].docket,array[x].name,array[x].surname,promedio,condicion)
+        posicion=posicion+1
 
 
 load(recay)
