@@ -65,7 +65,6 @@ def display(array):
 
 load(recay)
 display(recay)
-"""
 
 #2)
 
@@ -181,3 +180,81 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
+"""
+
+#----------------------------------------------------------------
+#Ejercicios Adicionales
+
+
+#1)
+
+regs=Record.create_type("regs",
+"name",
+"sur",
+"date",
+"notes",
+name="",
+sur="",
+date="",
+notes=0.0)
+
+stds=regs
+
+students=np.array([stds]*3)
+
+regc=Record.create_type("regc",
+"level",
+"prof",
+"stu",
+level=0,
+prof="",
+stu=0)
+
+clsr=regc
+
+classroom=np.array([clsr]*3)
+"""
+notes=np.array([0]*3)
+for j in range(len(students)):
+    students[j]=regs()
+    students[j].name=input("Por favor, ingrese un nombre: ")
+    students[j].sur=input("Por favor, ingrese un apellido: ")
+    students[j].date=input("Por favor, ingrese su fecha de nacimiento: ")
+    students[j].notes=students[j].notes+notes
+    for x in range(len(students)):
+        students[j].notes[x]=float(input("Por favor, ingrese una nota: "))
+
+input()
+
+for k in range(len(students)):
+    print(students[k].name)
+    print(students[k].sur)
+    print(students[k].date)
+    print(students[k].notes)
+"""
+
+notes=np.array([0]*3)
+for x in range(len(classroom)):
+    classroom[x]=regc()
+    classroom[x].level=input("Por favor, ingrese el nivel correspondiente: ")
+    classroom[x].prof=input("Por favor, ingrese el nombre del profesor/a: ")
+    for j in range(len(students)):
+        students[j]=regs()
+        students[j].name=input("Por favor, ingrese un nombre: ")
+        students[j].sur=input("Por favor, ingrese un apellido: ")
+        students[j].date=input("Por favor, ingrese su fecha de nacimiento: ")
+        students[j].notes=students[j].notes+notes
+        for x in range(len(students)):
+            students[j].notes[x]=float(input("Por favor, ingrese una nota: "))
+    
+
+input()
+
+for x in range(len(classroom)):
+    print(classroom[x].level)
+    print(classroom[x].prof)
+    for j in range(len(students)):
+        print(classroom[x].stu,end="")
+    print()
+
+    #Las notas dan 0
