@@ -3,6 +3,7 @@
 
 #Trabajo práctico 3
 
+from numpy.core.fromnumeric import transpose
 from pyrecord import Record
 import numpy as np, os, random
 
@@ -188,6 +189,16 @@ while opcion!=0:
 
 #1)
 
+regc=Record.create_type("regc",
+"level",
+"prof",
+level=0,
+prof="")
+
+clss=regc
+
+classroom=np.array([clss]*5)
+
 regs=Record.create_type("regs",
 "name",
 "sur",
@@ -196,65 +207,106 @@ regs=Record.create_type("regs",
 name="",
 sur="",
 date="",
-notes=0.0)
+notes=0)
 
 stds=regs
 
-students=np.array([stds]*3)
+stu=np.array([[stds]*20]*5)
 
-regc=Record.create_type("regc",
-"level",
-"prof",
-"stu",
-level=0,
-prof="",
-stu=0)
+def load_stu(struct):
+    filas=struct.shape[0]
+    columnas=struct.shape[1]
+    name=["Jason","Kendrick","Laurence","Patrick","Sheila","Aubrey","Patricia","Brent"]
+    sur=["O'Collins","Bergman","Idle","Jones","Cleese","Ryder","Peterson","Grundy","LaFerrere"]
+    date=["29/7/2000","9/3/2002","10/8/2001","12/3/2004","21/9/2002","5/5/2002"]
+    notes=np.array([0]*10)
+    for f in range(filas):
+        for c in range(columnas):
+            struct[f,c]=regs()
+            struct[f,c].name=random.choice(name)
+            struct[f,c].sur=random.choice(sur)
+            struct[f,c].date=random.choice(date)
+            struct[f,c].notes=struct[f,c].notes+notes
+            for n in range(len(notes)):
+                struct[f,c].notes[n]=random.randint(1,10)
 
-clsr=regc
 
-classroom=np.array([clsr]*3)
-"""
-notes=np.array([0]*3)
-for j in range(len(students)):
-    students[j]=regs()
-    students[j].name=input("Por favor, ingrese un nombre: ")
-    students[j].sur=input("Por favor, ingrese un apellido: ")
-    students[j].date=input("Por favor, ingrese su fecha de nacimiento: ")
-    students[j].notes=students[j].notes+notes
-    for x in range(len(students)):
-        students[j].notes[x]=float(input("Por favor, ingrese una nota: "))
+def load(array):
+    prof=["Terry","Susan","Clementina","Foster","Graham","John","Adelaide","Brick"]
+    for x in range(len(array)):
+        array[x]=regc()
+        array[x].level=random.randint(1,6)
+        array[x].prof=random.choice(prof)                                            
 
-input()
 
-for k in range(len(students)):
-    print(students[k].name)
-    print(students[k].sur)
-    print(students[k].date)
-    print(students[k].notes)
-"""
+def display_stu(struct):
+    filas=struct.shape[0]
+    columnas=struct.shape[1]
+    for f in range(filas):
+        for c in range(columnas):                               
+            print(struct[f,c].name,end=" ")
+            print(struct[f,c].sur,end=" ")
+            print(struct[f,c].date,end=" ")
+            for n in range(10):
+                print(struct[f,c].notes[n],end=" ")
+            print()
+        print()
 
-notes=np.array([0]*3)
-for x in range(len(classroom)):
-    classroom[x]=regc()
-    classroom[x].level=input("Por favor, ingrese el nivel correspondiente: ")
-    classroom[x].prof=input("Por favor, ingrese el nombre del profesor/a: ")
-    for j in range(len(students)):
-        students[j]=regs()
-        students[j].name=input("Por favor, ingrese un nombre: ")
-        students[j].sur=input("Por favor, ingrese un apellido: ")
-        students[j].date=input("Por favor, ingrese su fecha de nacimiento: ")
-        students[j].notes=students[j].notes+notes
-        for x in range(len(students)):
-            students[j].notes[x]=float(input("Por favor, ingrese una nota: "))
-    
 
-input()
+def display_stu_notes(struct):
+    filas=struct.shape[0]
+    columnas=struct.shape[1]
+    for f in range(filas):
+        for c in range(columnas):                               
+            print(struct[f,c].name,end=" ")
+            print(struct[f,c].sur,end=" ")
+            for n in range(10):
+                print(struct[f,c].notes[n],end=" ")
+            print()
+        print()
 
-for x in range(len(classroom)):
-    print(classroom[x].level)
-    print(classroom[x].prof)
-    for j in range(len(students)):
-        print(classroom[x].stu,end="")
+
+def display(array):
+    for x in range(len(array)):                             
+        print(array[x].level,array[x].prof)
+
+def sorting(struct):
+    filas=struct.shape[0]
+    columnas=struct.shape[1]
+    for f in range(filas):
+        for c in range(columnas):                               
+            print(struct[f,c].name,end=" ")
+            print(struct[f,c].sur,end=" ")
+            for n in range(10):
+                print(struct[f,c].notes[n],end=" ")
+            print()
+        print()
+
+
+
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Cargar la planilla.")
+    print("2. Mostrar por los estudiantes por clase y sus respectivas notas.")
+    print("3. Calcular la cantidad de trabajadores de sexo masculino.")
+    print("0. Salir.")
     print()
 
-    #Las notas dan 0
+def buttons(opcion):
+    if opcion==1:
+        load(classroom)  
+        load_stu(stu)  
+        print("Se han cargado exitosamente")
+    elif opcion==2:
+        display_stu_notes(stu)
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=int(input("Seleccione una opción (1-3): "))
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
