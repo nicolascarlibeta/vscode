@@ -216,8 +216,8 @@ stu=np.array([[stds]*20]*5)
 def load_stu(struct):
     filas=struct.shape[0]
     columnas=struct.shape[1]
-    name=["Jason","Kendrick","Laurence","Patrick","Sheila","Aubrey","Patricia","Brent"]
-    sur=["O'Collins","Bergman","Idle","Jones","Cleese","Ryder","Peterson","Grundy","LaFerrere"]
+    name=["Jason","Kendrick","Laurence","Patrick","Sheila","Aubrey","Patricia","Brent","Melissa"]
+    sur=["O'Collins","Bergman","Idle","Jones","Cleese","Ryder","Peterson","Grundy","LaFerrere","Auckland"]
     date=["29/7/2000","9/3/2002","10/8/2001","12/3/2004","21/9/2002","5/5/2002"]
     notes=np.array([0]*10)
     for f in range(filas):
@@ -235,7 +235,7 @@ def load(array):
     prof=["Terry","Susan","Clementina","Foster","Graham","John","Adelaide","Brick"]
     for x in range(len(array)):
         array[x]=regc()
-        array[x].level=random.randint(1,6)
+        array[x].level=x+1
         array[x].prof=random.choice(prof)                                            
 
 
@@ -253,15 +253,17 @@ def display_stu(struct):
         print()
 
 
-def display_stu_notes(struct):
+def display_stu_notes(array,struct):
     filas=struct.shape[0]
     columnas=struct.shape[1]
     for f in range(filas):
+        print("Nivel",array[f].level)
+        print("Prof.",array[f].prof)
         for c in range(columnas):                               
             print(struct[f,c].name,end=" ")
             print(struct[f,c].sur,end=" ")
             for n in range(10):
-                print(struct[f,c].notes[n],end=" ")
+               print(struct[f,c].notes[n],end=" ")
             print()
         print()
 
@@ -270,18 +272,31 @@ def display(array):
     for x in range(len(array)):                             
         print(array[x].level,array[x].prof)
 
-def sorting(struct):
-    filas=struct.shape[0]
+    
+def bubsort(struct,f):
     columnas=struct.shape[1]
-    for f in range(filas):
+    termino=False
+    while not(termino):
+        columnas=columnas-1
+        termino=True
         for c in range(columnas):                               
-            print(struct[f,c].name,end=" ")
-            print(struct[f,c].sur,end=" ")
-            for n in range(10):
-                print(struct[f,c].notes[n],end=" ")
-            print()
-        print()
+            if struct[f,c].sur>struct[f,c+1].sur:
+                switch=struct[f,c]
+                struct[f,c]=struct[f,c+1]
+                struct[f,c+1]=switch
+                termino=False
 
+
+def sort_display_stu_notes(struct):
+    filas=struct.shape[0]
+    for f in range(filas):
+        bubsort(struct,f)
+
+
+            
+
+                        
+                    
 
 
 
@@ -290,8 +305,8 @@ def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
     print("1. Cargar la planilla.")
-    print("2. Mostrar por los estudiantes por clase y sus respectivas notas.")
-    print("3. Calcular la cantidad de trabajadores de sexo masculino.")
+    print("2. Mostrar el listado de estudiantes y sus respectivas notas.")
+    print("3. Ordenar la planilla por orden alfabético.")
     print("0. Salir.")
     print()
 
@@ -301,7 +316,11 @@ def buttons(opcion):
         load_stu(stu)  
         print("Se han cargado exitosamente")
     elif opcion==2:
-        display_stu_notes(stu)
+        display_stu_notes(classroom,stu)
+        print("Se han cargado exitosamente")
+    elif opcion==3:
+        sort_display_stu_notes(stu)
+        print("Se han cargado exitosamente")
 
 opcion=5
 while opcion!=0:
