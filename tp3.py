@@ -3,7 +3,6 @@
 
 #Trabajo práctico 3
 
-from numpy.core.fromnumeric import transpose
 from pyrecord import Record
 import numpy as np, os, random
 
@@ -214,12 +213,16 @@ stds=regs
 stu=np.array([[stds]*20]*5)
 
 regp=Record.create_type("regp",
+"nombre",
+"apellido",
 "promedio",
+nombre="",
+apellido="",
 promedio=0)
 
 prmd=regp
 
-average=np.array([prmd]*100)
+average=np.array([[prmd]*20]*5)
 
 def load_stu(struct):
     filas=struct.shape[0]
@@ -301,29 +304,48 @@ def sort_display_stu_notes(struct):
         bubsort(struct,f)
 
 
-def average_c(struct,matrix):
-    filas=matrix.shape[0]
-    for j in range(filas):
+def average_c(struct,matrix,f):
+    columnas=matrix.shape[1]
+    for c in range(columnas):
+        struct[f,c]=regp()
         for n in range(10):
-            struct[j].promedio=struct[j].promedio+matrix[j,n].notes[n]
+            struct[f,c].promedio=struct[f,c].promedio+matrix[f,c].notes[n]
+            struct[f,c].nombre=matrix[f,c].name
+            struct[f,c].apellido=matrix[f,c].sur
+        struct[f,c].promedio=struct[f,c].promedio/10
+
+
+def bubsort_avg(struct,f):
+    columnas=struct.shape[1]
+    termino=False
+    while not(termino):
+        columnas=columnas-1
+        termino=True
+        for c in range(columnas):                               
+            if struct[f,c].promedio<struct[f,c+1].promedio:
+                switch=struct[f,c]
+                struct[f,c]=struct[f,c+1]
+                struct[f,c+1]=switch
+                termino=False
 
 
 def average_calc(struct,matrix):
-    filas=matrix.shape[0]
+    filas=struct.shape[0]
     for f in range(filas):
-        average_c(struct,matrix)
-
-    for j in range(len(struct)):
-        print(struct[j].promedio)
+        average_c(struct,matrix,f)
+        bubsort_avg(struct,f)
 
 
-
-    
-
-                        
-                    
-
-
+def display_average_calc(struct,array):
+    filas=struct.shape[0]
+    columnas=struct.shape[1]
+    for f in range(filas):
+        print("Nivel",array[f].level)
+        print("Prof.",array[f].prof)
+        for c in range(columnas):
+            print(struct[f,c].nombre,struct[f,c].apellido,struct[f,c].promedio)
+        print()
+  
 
 
 def main_Menu():
@@ -331,7 +353,8 @@ def main_Menu():
     print()
     print("1. Cargar la planilla.")
     print("2. Mostrar el listado de estudiantes y sus respectivas notas.")
-    print("3. Ordenar la planilla por orden alfabético.")
+    print("3. Ordenar la planilla por orden alfabético.") 
+    print("4. Mostrar el listado de estudiantes ordenado por promedios de mayor a menor.") 
     print("0. Salir.")
     print()
 
@@ -341,6 +364,7 @@ def buttons(opcion):
         load_stu(stu)  
         print("Se han cargado exitosamente")
     elif opcion==2:
+        print()
         display_stu_notes(classroom,stu)
         print("Se han cargado exitosamente")
     elif opcion==3:
@@ -348,7 +372,9 @@ def buttons(opcion):
         print("Se han ordenado exitosamente")
     elif opcion==4:
         average_calc(average,stu)
-        print("Se han ordenado exitosamente")
+        print()
+        display_average_calc(average,classroom)
+        print("Se han cargado exitosamente")
 
 opcion=5
 while opcion!=0:
