@@ -213,6 +213,14 @@ stds=regs
 
 stu=np.array([[stds]*20]*5)
 
+regp=Record.create_type("regp",
+"promedio",
+promedio=0)
+
+prmd=regp
+
+average=np.array([prmd]*100)
+
 def load_stu(struct):
     filas=struct.shape[0]
     columnas=struct.shape[1]
@@ -293,7 +301,24 @@ def sort_display_stu_notes(struct):
         bubsort(struct,f)
 
 
-            
+def average_c(struct,matrix):
+    filas=matrix.shape[0]
+    for j in range(filas):
+        for n in range(10):
+            struct[j].promedio=struct[j].promedio+matrix[j,n].notes[n]
+
+
+def average_calc(struct,matrix):
+    filas=matrix.shape[0]
+    for f in range(filas):
+        average_c(struct,matrix)
+
+    for j in range(len(struct)):
+        print(struct[j].promedio)
+
+
+
+    
 
                         
                     
@@ -320,7 +345,10 @@ def buttons(opcion):
         print("Se han cargado exitosamente")
     elif opcion==3:
         sort_display_stu_notes(stu)
-        print("Se han cargado exitosamente")
+        print("Se han ordenado exitosamente")
+    elif opcion==4:
+        average_calc(average,stu)
+        print("Se han ordenado exitosamente")
 
 opcion=5
 while opcion!=0:
