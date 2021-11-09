@@ -2,7 +2,7 @@
 import random 
 import numpy as np
 from funciones_utiles import *
-from numpy.testing._private.utils import rand  # importamos funciones útiles de otro archivo
+#from numpy.testing._private.utils import rand  # importamos funciones útiles de otro archivo
 
 # Ejemplos de uso para archivos Secuenciales (de texto)
 
@@ -40,7 +40,7 @@ def leer():
         print(f'{" "*12} {cont:>2} {n1:<12} {n2:>4}     {n3:>4} {n4:>12.2f}')   # Muestro lo leido
         linea=a1.readline().strip() # Leo una nueva línea
         cont+=1
-
+        print(f'{cont:>2}')
     a1.close() # cierro el archivo
 
 # Usamos a (append) para agregar
