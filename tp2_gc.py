@@ -347,8 +347,7 @@ while opcion!=0:
 
 #2)
 
-#matrix=np.array([[0]*3]*3)
-matrix2=np.array([[2,-3,5],[-1,0,-3],[4,-2,1],[2,-3,5],[-1,0,-3]])
+matrix=np.array([[0]*3]*3)
 
 
 def load_Matray(matrix):
@@ -368,7 +367,7 @@ def display_Matray(matrix):
         print()
     print() 
 
-"""
+
 #a)
 def interchange(matrix,f,c):
     switch=np.array([0])
@@ -384,85 +383,71 @@ def trainspotting(matrix):
         columna=columna+1
         for c in range(columna,columnas):
             interchange(matrix,f,c)
-"""   
+
 #b)
-  
-def determinante(matrix):
+def duplicate(matrix):
+    fila1=matrix[0]
+    fila2=matrix[1]
+    fila3=matrix[2]
+    matrix_deter=np.array([fila1,fila2,fila3,fila1,fila2])
+    return matrix_deter
+
+
+def deter(matrix):
     filas=matrix.shape[0]
     columnas=matrix.shape[1]
-    diagonprincipal=1
-    diagonparalela=1
-    diagonparalela2=1
+    diagonpri=1
+    diagonpar=1
+    diagonpar2=1
+    d1=0
     for f in range(filas):
         for c in range(columnas):
             if f==c:
-                diagonprincipal=diagonprincipal*matrix[f,c]
-            
+                diagonpri=diagonpri*matrix[f,c]
+             
             elif f==c+1:
-                diagonparalela=diagonparalela*matrix[f,c]
+                diagonpar=diagonpar*matrix[f,c]
 
             elif f==c+2:
-                diagonparalela2=diagonparalela2*matrix2[f,c]
+                diagonpar2=diagonpar2*matrix[f,c]
 
-    return diagonprincipal,diagonparalela,diagonparalela2      
+    d1=diagonpri+diagonpar+diagonpar2
+
+    return d1 
 
 
-def determinante2(matrix):
-    filas=matrix.shape[0]
+def deter2_a(matrix,f):
     columnas=matrix.shape[1]
-    diagonsecundaria=1
-    columna=3
-    for f in range(3):
-        columna=columna-1
-        for c in range(1):
-            diagonsecundaria=diagonsecundaria*matrix[f,columna]
-    
-    dgp1=1
-    for f in range(1,3+1):
-        columna=columna-1
-        for c in range(1):
-            dgp1=dgp1*matrix[f,columna]
-    
-    dgp2=1
-    for f in range(2,3+2):
-        columna=columna-1
-        for c in range(1):
-            dgp2=dgp2*matrix[f,columna]
-    
-    return diagonsecundaria,dgp2
+    diagonal=1
+    numero=3
+    for c in range(columnas):
+        numero=numero-1
+        diagonal=diagonal*matrix[f,numero]
+        f=f+1
 
-        
+    return diagonal
+
+
+def deter2(matrix):
+    d2=0
+    columnas=matrix.shape[1]
+    for f in range(columnas):
+        diagonal=deter2_a(matrix,f)
+        d2=d2+diagonal
+
+    return d2
     
 
-  
-display_Matray(matrix2)
-input()
-diagonal,diagonal2,diagonal3=determinante(matrix2)
-print(diagonal,diagonal2,diagonal3)
-input()
-diagonalsec,dgp2=determinante2(matrix2)
-print(diagonalsec,dgp2)
 
-
-
-
-
-
-
-
-
-
-
-"""
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
     print("1. Cargar la matriz de 3x3.")
     print("2. Mostrar por pantalla la matriz.")
     print("3. Realizar la transpuesta de la matriz.")
+    print("4. Calcular su determinante.")
     print("0. Salir.")
     print()
-
     
 def buttons(opcion):
     if opcion==1:
@@ -476,6 +461,12 @@ def buttons(opcion):
     elif opcion==3:
         trainspotting(matrix)   
         print("Se han cargado exitosamente")
+    elif opcion==4:
+        matrix_a=duplicate(matrix)
+        d1=deter(matrix_a)   
+        d2=deter2(matrix_a)   
+        dterm=d1-d2
+        print("El determinante de la matriz es: ",dterm)
 
 
 opcion=5
@@ -485,4 +476,3 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""

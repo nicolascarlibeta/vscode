@@ -154,7 +154,6 @@ print([a[0,col]])
 
 colList=[a[x,col] for x in range(2)]
 print(colList)
-"""
 
 matrix=np.array([[0]*5]*5)
 
@@ -193,6 +192,21 @@ display(matrix)
 input()
 major(matrix)
 display(matrix)
+"""
+
+fila=[0,2,3]
+
+array=np.array([fila,fila])
+
+filas=array.shape[0]
+columnas=array.shape[1]
+
+for f in range(filas):
+    for c in range(columnas):
+        print(array[f,c],end="")
+    print()
+
+print(array[0,1])
 
 
        
