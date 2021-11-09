@@ -105,7 +105,6 @@ while opcion!=0:
 
 #2)
 
-
 def write():
     celsius=open("temperaturas.txt","w")
     mes=0
@@ -223,3 +222,29 @@ while opcion!=0:
 
 #3)
 
+def write(variable,month,days,years,temp):
+    for m in range(1):
+        for d in range(1):
+            writeline=str(days)+"-"+str(month)+"-"+str(years)+"-"+str(temp)+"\n"
+            variable.write(writeline)
+            
+def readandwrite():
+    celsius=open("temperaturas.txt","r")
+    avg_celsius=open("temp_media.txt","w")
+    readline=celsius.readline()
+    temp_med=0
+    while readline!="":
+        s=readline.split("-") #Divide la lineas según el guión
+        dia=int(s[0])
+        mes=int(s[1])
+        año=int(s[2])
+        max=int(s[4])
+        min=int(s[3])
+        temp_med=(min+max)/2
+        write(avg_celsius,mes,dia,año,temp_med)
+        readline=celsius.readline()
+
+    avg_celsius.close()
+    celsius.close()
+
+readandwrite()
