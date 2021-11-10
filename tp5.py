@@ -247,4 +247,65 @@ def readandwrite():
     avg_celsius.close()
     celsius.close()
 
-readandwrite()
+
+def read():
+    avg_celsius=open("temp_media.txt","r")
+    readline=avg_celsius.readline()
+    while readline!="":
+        s=readline.split("-") #Divide la lineas según el guión
+        dia=int(s[0])
+        mes=int(s[1])
+        año=int(s[2])
+        temp_med=float(s[3])
+        print(" "*35,dia,mes,año,temp_med)
+        readline=avg_celsius.readline()
+
+    avg_celsius.close()
+
+
+
+def main_Menu():
+    print()
+    print()
+    print(" "*45,"Menú Principal")
+    print()
+    print(" "*35,"1 Leer y crear el archivo automáticamente.")
+    print()
+    print(" "*35,"2 Leer el archivo de temperaturas medias diarias.")
+    print()
+    print(" "*35,"0 Salir.")
+    print()
+    print()
+
+def spaces():
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        os.system("cls")
+        readandwrite()
+        spaces()
+        print(" "*35,"Se ha creado exitosamente")
+        spaces()
+    elif opcion==2:
+        os.system("cls")
+        read()
+        spaces()
+        print(" "*35,"Se ha cargado exitosamente")
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    print(" "*35,end="")
+    opcion=int(input("Seleccione una opción: "))
+    buttons(opcion)
+    print(" "*35,end="")
+    input("Presione Inter para continuar: ")
