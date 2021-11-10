@@ -218,7 +218,6 @@ while opcion!=0:
     buttons(opcion)
     print(" "*35,end="")
     input("Presione Inter para continuar: ")
-"""
 
 #3)
 
@@ -309,3 +308,121 @@ while opcion!=0:
     buttons(opcion)
     print(" "*35,end="")
     input("Presione Inter para continuar: ")
+"""
+
+#----------------------------------------------------------------
+#Ejercicios Adicionales
+
+
+#1)
+
+def write():
+    quora=open("encuesta.txt","w")
+    for q in range(20):
+        sex=random.randint(1,2)
+        age=random.randint(15,59)
+        civil_state=random.randint(1,3)
+        work=random.randint(0,1)
+        study=random.randint(0,1)
+        writeline=str(sex)+"-"+str(age)+"-"+str(civil_state)+"-"+str(work)+"-"+str(study)+"\n"
+        quora.write(writeline)
+
+    quora.close()
+
+def read():
+    quora=open("encuesta.txt","r")
+    readline=quora.readline()
+    vec_quora=np.array([0]*7)
+    while readline!="":
+        s=readline.split("-") #linea.separado por(coma, linea, punto, etc.)
+        sex=int(s[0])
+        age=int(s[1])
+        cs=int(s[2])
+        work=int(s[3])
+        study=int(s[4])
+
+        if sex==1:
+            vec_quora[0]=vec_quora[0]+1
+        else:
+            vec_quora[1]=vec_quora[1]+1
+        
+        if age<18 and work==1:
+            vec_quora[2]=vec_quora[2]+1
+
+        if cs==1:
+            vec_quora[3]=vec_quora[3]+1
+        elif cs==2:
+            vec_quora[4]=vec_quora[4]+1
+        
+        if work==1 and study==1:
+            vec_quora[5]=vec_quora[5]+1
+
+        if sex==2 and work==1:
+            vec_quora[6]=vec_quora[6]+1
+    
+        readline=quora.readline()
+
+    print(" "*35,"PORCENTAJES")
+    print()
+    print(" "*35,"Varones: ",vec_quora[0])
+    print(" "*35,"Mujeres: ",vec_quora[1])
+    print(" "*35,"Menores de 18 años que trabajan: ",vec_quora[2])
+    print(" "*35,"Solteros: ",vec_quora[3])
+    print(" "*35,"Casados: ",vec_quora[4])
+    print(" "*35,"Encuestados que trabajan y estudian: ",vec_quora[5])
+    print(" "*35,"Mujeres que trabajan: ",vec_quora[6])
+    print()
+
+    quora.close()
+
+
+def main_Menu():
+    print()
+    print()
+    print(" "*35,"Menú Principal")
+    print()
+    print(" "*25,"1 Cargar los datos de la encuesta.")
+    print()
+    print(" "*25,"2 Leer el archivo e informar un reporte de porcentajes.")
+    print()
+    print(" "*25,"0 Salir.")
+    print()
+    print()
+
+def spaces():
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        os.system("cls")
+        write()
+        spaces()
+        print(" "*35,"Se ha creado exitosamente")
+        spaces()
+    elif opcion==2:
+        os.system("cls")
+        spaces()
+        read()
+        spaces()
+        print(" "*35,"Se ha cargado exitosamente")
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    print(" "*35,end="")
+    opcion=int(input("Seleccione una opción: "))
+    buttons(opcion)
+    print(" "*35,end="")
+    input("Presione Inter para continuar: ")
+
+
+
+
