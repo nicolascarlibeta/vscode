@@ -237,4 +237,9 @@ for x in range(11):
 
 """
 
-          
+import random
+
+baraja = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
+for i in range(1):
+     random.shuffle(baraja)
+     print(baraja)

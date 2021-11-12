@@ -308,7 +308,7 @@ while opcion!=0:
     buttons(opcion)
     print(" "*35,end="")
     input("Presione Inter para continuar: ")
-"""
+
 
 #----------------------------------------------------------------
 #Ejercicios Adicionales
@@ -422,6 +422,29 @@ while opcion!=0:
     buttons(opcion)
     print(" "*35,end="")
     input("Presione Inter para continuar: ")
+"""
+
+#2)
+
+def writb():
+    store=open("productos.txt","w")
+    mp=0
+    for m in range(3):
+        mp=mp+1
+        prod=0
+        for p in range(6):
+            prod=prod+1
+            cant=random.randint(15,25)
+            cost=random.randint(2000,3500)
+            writeline=str(prod)+"-"+str(mp)+"-"+str(cant)+"-"+str(cost)+"\n"
+            store.write(writeline)
+    
+    store.close()
+
+writb()
+            
+
+
 
 
 
