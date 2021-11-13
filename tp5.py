@@ -444,11 +444,173 @@ def read(g,p,m):
                 
         readline=store.readline()
     
-    print(grams)
+    print(" "*20,"La cantidad de materia prima necesaria para fabricar",g,"gramos es de: ",grams)
     store.close()
 
 
-read(90,6,3)
+
+regs=Record.create_type("regs",
+"cant",
+"mp",
+cant=0.00,
+mp=0)
+
+mp=regs
+
+mprim=np.array([mp]*6)
+
+def load(rec):
+    for x in range(len(rec)):
+        rec[x]=regs()
+
+def read2(rec):
+    store=open("productos.dat","r")
+    readline=store.readline()
+    load(rec)
+    while readline!="":
+        s=readline.split(",")
+        prod=int(s[0])
+        mp=int(s[1])
+        cant=float(s[2])
+
+        if prod==6:
+            if cant>rec[0].cant:
+                rec[0].cant=cant
+                rec[0].mp=mp
+        elif prod==5:
+            if cant>rec[1].cant:
+                rec[1].cant=cant
+                rec[1].mp=mp
+        elif prod==4:
+            if cant>rec[2].cant:
+                rec[2].cant=cant
+                rec[2].mp=mp
+        elif prod==3:
+            if cant>rec[3].cant:
+                rec[3].cant=cant
+                rec[3].mp=mp
+        elif prod==2:
+            if cant>rec[4].cant:
+                rec[4].cant=cant
+                rec[4].mp=mp
+        elif prod==1:
+            if cant>rec[5].cant:
+                rec[5].cant=cant
+                rec[5].mp=mp
+
+        readline=store.readline()
+    
+    print(" "*35,"MATERIA PRIMA PRINCIPAL POR PRODUCTO")
+    print()
+    print(" "*35,"Producto N°1: ","Materia Prima N°"+str(rec[5].mp))
+    print(" "*35,"Producto N°2: ","Materia Prima N°"+str(rec[4].mp))
+    print(" "*35,"Producto N°3: ","Materia Prima N°"+str(rec[3].mp))
+    print(" "*35,"Producto N°4: ","Materia Prima N°"+str(rec[2].mp))
+    print(" "*35,"Producto N°5: ","Materia Prima N°"+str(rec[1].mp))
+    print(" "*35,"Producto N°6: ","Materia Prima N°"+str(rec[0].mp))
+    print()
+
+    store.close()
+
+
+
+def read3():
+    store=open("productos.dat","r")
+    readline=store.readline()
+    vec_cost=np.array([0.0]*6)
+    while readline!="":
+        s=readline.split(",")
+        prod=int(s[0])
+        mp=int(s[1])
+        cant=float(s[2])
+        cost=float(s[3])
+
+        if prod==6:
+            vec_cost[0]=vec_cost[0]+cost
+        elif prod==5:
+            vec_cost[1]=vec_cost[1]+cost
+        elif prod==4:
+            vec_cost[2]=vec_cost[2]+cost
+        elif prod==3:
+            vec_cost[3]=vec_cost[3]+cost
+        elif prod==2:
+            vec_cost[4]=vec_cost[4]+cost
+        elif prod==1:
+            vec_cost[5]=vec_cost[5]+cost
+
+
+        readline=store.readline()
+
+    for j in range(len(vec_cost)):
+        vec_cost[j]=vec_cost[j]/3
+
+    print(" "*35,"COSTO PROMEDIO POR PRODUCTO")
+    print()
+    print(" "*35,"Producto N°1: ","Costo Promedio (en pesos): ",vec_cost[5])
+    print(" "*35,"Producto N°2: ","Costo Promedio (en pesos): ",vec_cost[4])
+    print(" "*35,"Producto N°3: ","Costo Promedio (en pesos): ",vec_cost[3])
+    print(" "*35,"Producto N°4: ","Costo Promedio (en pesos): ",vec_cost[2])
+    print(" "*35,"Producto N°5: ","Costo Promedio (en pesos): ",vec_cost[1])
+    print(" "*35,"Producto N°6: ","Costo Promedio (en pesos): ",vec_cost[0])
+    print()
+
+    store.close()
+
+
+
+def main_Menu():
+    print()
+    print()
+    print(" "*35,"Menú Principal")
+    print()
+    print(" "*20,"1 Calcular la cantidad de materia prima mecesaria para fabricar n gramos de n producto.")
+    print()
+    print(" "*20,"2 Mostrar por cada producto su materia prima principal.")
+    print()
+    print(" "*20,"3 Mostrar el costo promedio por producto.")
+    print()
+    print(" "*20,"0 Salir.")
+    print()
+    print()
+
+def spaces():
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        os.system("cls")
+        grams=float(input("Por favor, ingrese los gramos correspondientes: "))
+        product=int(input("Por favor, ingrese el producto correspondiente: "))
+        mp=int(input("Por favor, ingrese la materia prima correspondiente: "))
+        os.system("cls")
+        spaces()
+        read(grams,product,mp)
+        spaces()
+    elif opcion==2:
+        os.system("cls")
+        read2(mprim)
+        spaces()
+    elif opcion==3:
+        os.system("cls")
+        read3()
+        spaces()
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    print(" "*35,end="")
+    opcion=int(input("Seleccione una opción: "))
+    buttons(opcion)
+    print(" "*35,end="")
+    input("Presione Inter para continuar: ")
 
 
 
