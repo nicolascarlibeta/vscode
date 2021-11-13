@@ -426,24 +426,29 @@ while opcion!=0:
 
 #2)
 
-def writb():
-    store=open("productos.txt","w")
-    mp=0
-    for m in range(3):
-        mp=mp+1
-        prod=0
-        for p in range(6):
-            prod=prod+1
-            cant=random.randint(15,25)
-            cost=random.randint(2000,3500)
-            writeline=str(prod)+"-"+str(mp)+"-"+str(cant)+"-"+str(cost)+"\n"
-            store.write(writeline)
+def read(g,p,m):
+    store=open("productos.dat","r")
+    readline=store.readline()
+    grams=0
+    while readline!="":
+        s=readline.split(",")
+        prod=int(s[0])
+        mp=int(s[1])
+        cant=float(s[2])
+        cost=float(s[3])
+
+        if prod==p:
+            if mp==m:
+                grams=100/cant
+                grams=g/grams
+                
+        readline=store.readline()
     
+    print(grams)
     store.close()
 
-writb()
-            
 
+read(90,6,3)
 
 
 
