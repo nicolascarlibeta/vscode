@@ -1,5 +1,5 @@
 
-
+"""
 #Abrir un archivo
 #Escribir un archivo
 #Leer un archivo
@@ -54,7 +54,36 @@ for x in range(5):  #Agrego 5 lineas adicionales
 
 var1.close()
 
+"""
+
+#Técnica de Corte de Control
+
+def control_cut():
+    notes=open("cc_testing.txt","r")
+    readline=notes.readline().strip()
+    s=readline.split("-")
+    data=int(s[1])
+    while readline!="":
+        suma=0
+        contador=0
+        data_b=data
+        while data_b==data and readline!="":
+            docket=int(s[0])
+            ns=int(s[2])
+            suma=suma+ns
+            contador=contador+1
+            print("Legajo: ",docket)
+            print("Nota: ",ns)
+            readline=notes.readline().strip()
+            if readline!="":
+                s=readline.split("-")
+                data=int(s[1])
+
+        promedio=suma/contador
+        print("Promedio: ",promedio)
+        print()
 
 
+    notes.close()
 
 
