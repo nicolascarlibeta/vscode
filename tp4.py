@@ -363,7 +363,7 @@ def control_cut():
         print(provincia)
 
     indec.close()
-
+#
 control_cut()
 
             
