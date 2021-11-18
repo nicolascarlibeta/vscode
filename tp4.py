@@ -199,7 +199,6 @@ while opcion!=0:
     buttons(opcion)
     print(" "*35,end="")
     input("Presione Inter para continuar: ")
-""" 
 
 #3)
 
@@ -230,12 +229,16 @@ def read():
     linea2=index.readline().strip()
     sep=linea2.split(".")
     acnum=int(sep[0])
+    print(" "*43,"MOVIMIENTOS")
+    print()
     while linea2!="":
         s=linea.split(".")
         prev_acnum=acnum
         account=int(s[0])
         ccode=int(s[1])
         sal=int(s[2])
+        print(" "*35,"Número de cuenta: ",prev_acnum)
+        print(" "*35,"Código de cliente: ",ccode)
         if prev_acnum==account:
             while prev_acnum==acnum and linea2!="":
                 mov=int(sep[1])
@@ -252,7 +255,8 @@ def read():
                     sep=linea2.split(".")
                     acnum=int(sep[0])
             
-        print(sal)
+                print(" "*35,"Tipo de movimiento: "+str(mov)+" - "+"Importe: "+str(imp))
+        print()
         
         linea=customers.readline().strip()
 
@@ -260,5 +264,118 @@ def read():
     customers.close()
     index.close()
 
-read()
+
+
+
+def main_Menu():
+    print()
+    print()
+    print(" "*45,"Menú Principal")
+    print()
+    print(" "*30,"1 Cargar los datos correspondientes.")
+    print()
+    print(" "*30,"2 Leer e informar un listado de ultimos movimientos.")
+    print()
+    print(" "*30,"0 Salir.")
+    print()
+    print()
+
+def spaces():
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        os.system("cls")
+        write()
+        spaces()
+        print(" "*35,"Se ha creado exitosamente")
+        spaces()
+    elif opcion==2:
+        os.system("cls")
+        read()
+        print(" "*35,"Se ha cargado exitosamente")
+        spaces()
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    print(" "*35,end="")
+    opcion=int(input("Seleccione una opción: "))
+    buttons(opcion)
+    print(" "*35,end="")
+    input("Presione Inter para continuar: ")
+"""
+
+#4)
+
+def write():
+    indec=open("indec.dat","w")
+    prov=0
+    for p in range(5):
+        prov=prov+1
+        ciud=0
+        for c in range(2):
+            ciud=ciud+1
+            v=random.randint(3000,5000)
+            m=random.randint(3000,5000)
+            d=random.randint(300,500)
+            linea=str(prov)+"-"+str(ciud)+"-"+str(v)+"-"+str(m)+"-"+str(d)+"\n"
+            indec.write(linea)
+
+    indec.close()
+
+def control_cut():
+    indec=open("indec.dat","r")
+    linea=indec.readline().strip()
+    s=linea.split("-")
+    prov=int(s[0])
+    mayor_prov=0
+    provincia=0
+    while linea!="":
+        suma=0
+        suma2=0
+        prev_prov=prov
+        while prev_prov==prov and linea!="":
+            ciud=int(s[1])
+            v=int(s[2])
+            m=int(s[3])
+            d=int(s[4])
+            suma=suma+v+m
+            suma2=suma2+d
+
+            if suma2>mayor_prov:
+                mayor_prov=suma2
+                provincia=prov
+            
+            linea=indec.readline()
+            if linea!="":
+                s=linea.split("-")
+                prov=int(s[0])
+
+        print(provincia)
+
+    indec.close()
+
+control_cut()
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
         
