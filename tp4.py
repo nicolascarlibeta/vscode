@@ -97,6 +97,7 @@ while opcion!=0:
     print(" "*35,end="")
     input("Presione Inter para continuar: ")
 
+
 #2)
 
 def write():
@@ -202,8 +203,62 @@ while opcion!=0:
 
 #3)
 
+def write():
+    customers=open("clientes.dat","w")
+    index=open("movimientos.dat","w")
+    acnum=45000
+    for c in range(6):
+        acnum=acnum+1
+        ccode=random.randint(10300,10399)
+        sal=random.randint(-5000,5000)
+        linea=str(acnum)+"."+str(ccode)+"."+str(sal)+"\n"
+        customers.write(linea)
+        for m in range(2):
+            mov=random.randint(1,2)
+            imp=random.randint(100,5000)
+            linea=str(acnum)+"."+str(mov)+"."+str(imp)+"\n"
+            index.write(linea)
 
-                
-                
+    customers.close()
+    index.close()
 
+           
+def read():
+    customers=open("clientes.dat","r")
+    index=open("movimientos.dat","r")
+    linea=customers.readline().strip()
+    linea2=index.readline().strip()
+    sep=linea2.split(".")
+    acnum=int(sep[0])
+    while linea2!="":
+        s=linea.split(".")
+        prev_acnum=acnum
+        account=int(s[0])
+        ccode=int(s[1])
+        sal=int(s[2])
+        if prev_acnum==account:
+            while prev_acnum==acnum and linea2!="":
+                mov=int(sep[1])
+                imp=int(sep[2])
+            
+                if mov==1:
+                    sal=sal+imp
+                else:
+                    sal=sal-imp
+                
+                linea2=index.readline().strip()
+
+                if linea2!="":
+                    sep=linea2.split(".")
+                    acnum=int(sep[0])
+            
+        print(sal)
+        
+        linea=customers.readline().strip()
+
+        
+    customers.close()
+    index.close()
+
+read()
         
