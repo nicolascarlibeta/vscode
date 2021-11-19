@@ -318,31 +318,57 @@ while opcion!=0:
 
 def write():
     indec=open("indec.dat","w")
-    prov=0
-    for p in range(5):
-        prov=prov+1
+    prov=["Buenos Aires",
+    "Capital Federal",
+    "Catamarca",
+    "Chaco",
+    "Chubut",
+    "Cordoba",
+    "Corrientes",
+    "Entre Rios",
+    "Formosa",
+    "Jujuy",
+    "La Pampa",
+    "La Rioja",
+    "Mendoza",
+    "Misiones",
+    "Neuquen",
+    "Rio Negro",
+    "Salta",
+    "San Juan",
+    "San Luis",
+    "Santa Cruz",
+    "Santa Fe",
+    "Santiago del Estero",
+    "Tierra del Fuego",
+    "Tucuman"]
+    ciud=0
+    for p in range(len(prov)):
         ciud=0
         for c in range(2):
             ciud=ciud+1
             v=random.randint(3000,5000)
             m=random.randint(3000,5000)
             d=random.randint(300,500)
-            linea=str(prov)+"-"+str(ciud)+"-"+str(v)+"-"+str(m)+"-"+str(d)+"\n"
+            linea=str(prov[p])+"-"+str(ciud)+"-"+str(v)+"-"+str(m)+"-"+str(d)+"\n"
             indec.write(linea)
 
     indec.close()
+
 
 def control_cut():
     indec=open("indec.dat","r")
     linea=indec.readline().strip()
     s=linea.split("-")
-    prov=int(s[0])
+    prov=str(s[0])
     mayor_prov=0
     provincia=0
+    print(" "*45,"CENSO DE LA REPÚBLICA ARGENTINA")
     while linea!="":
         suma=0
         suma2=0
         prev_prov=prov
+        print(" "*30,prev_prov)
         while prev_prov==prov and linea!="":
             ciud=int(s[1])
             v=int(s[2])
@@ -351,21 +377,74 @@ def control_cut():
             suma=suma+v+m
             suma2=suma2+d
 
-            if suma2>mayor_prov:
-                mayor_prov=suma2
-                provincia=prov
             
             linea=indec.readline()
             if linea!="":
                 s=linea.split("-")
-                prov=int(s[0])
+                prov=str(s[0])
 
-        print(provincia)
+            print(" "*30,"Ciudad "+str(ciud)+":","Varones: ",v,"- Mujeres: ",m,"- Desocupados: ",d)
+
+        print(" "*30,"Total por provincia: ",suma)
+        print()
+
+        suma2=suma2/suma
+        suma2=suma2*100
+
+        if suma2>mayor_prov:
+            mayor_prov=suma2
+            provincia=prev_prov
+
+    print(" "*30,f'La provincia con mayor índice de desempleo es la provincia de {provincia}, con un índice del {mayor_prov:2.2f}%')
 
     indec.close()
-#
-control_cut()
 
+
+
+def main_Menu():
+    print()
+    print()
+    print(" "*45,"Menú Principal")
+    print()
+    print(" "*30,"1 Cargar los datos del INDEC.")
+    print()
+    print(" "*30,"2 Leer e informar el censo de la República Argentina.")
+    print()
+    print(" "*30,"0 Salir.")
+    print()
+    print()
+
+def spaces():
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+
+def buttons(opcion):
+    if opcion==1:
+        os.system("cls")
+        write()
+        spaces()
+        print(" "*35,"Se ha creado exitosamente")
+        spaces()
+    elif opcion==2:
+        os.system("cls")
+        control_cut()
+        print(" "*35,"Se ha cargado exitosamente")
+
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    print(" "*35,end="")
+    opcion=int(input("Seleccione una opción: "))
+    buttons(opcion)
+    print(" "*35,end="")
+    input("Presione Inter para continuar: ")
             
             
             
