@@ -206,59 +206,104 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-
+"""
 #4)
 
-array=[1,2,3,4,5,6,7,8,9,0,0]
 cantidad_util=9
+array=[1,2,3,4,5,6,7,8,9,100,100,100,100,cantidad_util]
 
-for x in range(cantidad_util):
-    print(array[x],end=" ")
-print()
+def display_Array(array,cant):
+    for x in range(cant):
+        print(array[x],end=" ")
+    print()
 
-def overdimension(array,opcion,entero):
-    cantidad_util=9
-    if opcion=="a":
-        numero=int(input("¿Que número desea agregar al vector?: "))
-        array[entero]=numero   
-        if entero>=cantidad_util:
-            cantidad_util=entero+1
-            if cantidad_util>len(array):
-               print("ERROR! Se excedio el límite: No se pueden agregar mas elementos")
-        
-        for x in range(cantidad_util):
+def a(array,entero):
+    numero=int(input("¿Que número desea agregar al vector?: "))
+    if numero>=array[entero-1] and numero<=array[entero+1]:
+        array[entero]=numero
+        if entero>=array[-1]:
+            array[-1]=entero+1
+        for x in range(array[-1]):
             print(array[x],end=" ")
+        print()
+        print("Se han cargado exitosamente")
+    else:
+        print("ERROR! El numero ingresado NO esta ordenado con el vector")
 
-    elif opcion=="b":
-        for x in range(cantidad_util):
-            if array[x]==entero:
-                switch=array[x+1]
-                array[x+1]=array[x]
-                array[x]=switch
 
-        cantidad_util=cantidad_util-1
-        for x in range(cantidad_util):
+def b(array,entero):
+    busqueda=False
+    for x in range(array[-1]):
+        if array[x]==entero:
+            switch=array[x+1]
+            array[x+1]=array[x]
+            array[x]=switch
+            busqueda=True
+
+    if busqueda:
+        array[-1]=array[-1]-1
+        for x in range(array[-1]):
             print(array[x],end=" ")
+        print()
 
-    elif opcion=="i":
-        posicion=int(input("¿En que posición desea insertar el elemento?: "))
-        ciclos=cantidad_util-posicion
-        posicion2=cantidad_util
-        for x in range(ciclos):
-            switch=array[posicion2]
-            array[posicion2]=array[posicion2-1]
-            array[posicion2-1]=switch
-            posicion2=posicion2-1
-
-        cantidad_util=cantidad_util+1
-        array[posicion]=entero
-        for x in range(cantidad_util):
-            print(array[x],end=" ")
-
-input()
-overdimension(array,"b",3)
+    else:
+        print("ERROR! El elemento que desea borrar NO se encuentra dentro del vector")
 
 
+def i(array,entero):
+    posicion=int(input("¿En que posición desea insertar el elemento?: "))
+    ciclos=array[-1]-posicion 
+    posicion2=array[-1]
+    for x in range(ciclos):
+        switch=array[posicion2]
+        array[posicion2]=array[posicion2-1]
+        array[posicion2-1]=switch
+        posicion2=posicion2-1
+
+    array[-1]=array[-1]+1
+    array[posicion]=entero
+    for x in range(array[-1]):
+        print(array[x],end=" ")
+    print()
+
+
+def overdimension(array,accion,entero):
+    if accion=="A":
+        a(array,entero)
+    elif accion=="B":
+        b(array,entero)
+    elif accion=="I":
+        i(array,entero)
+
+
+def main_Menu():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("Seleccione la acción que desee realizar: ")
+    print("1. Mostrar el vector ordenado.")
+    print("A. Agregar un valor entero.")
+    print("B. Borrar un valor entero.")
+    print("I. Insertar un valor entero.")
+    print("0. Salir.")
+    print()
+
+def buttons(opcion):
+    if opcion=="1":
+        display_Array(array,array[-1])
+        print("Se han cargado exitosamente")  
+    elif opcion!=0:
+        entero=int(input("Ingrese un valor entero: "))
+        overdimension(array,opcion,entero)
+
+opcion=5
+while opcion!=0:
+    os.system("cls")
+    main_Menu()
+    opcion=input("Seleccione una opción (1-0): ").upper()
+    buttons(opcion)
+    input("Presione Inter para continuar: ")
+
+"""
 #----------------------------------------------------------------
 #Ejercicios Adicionales
 
@@ -318,7 +363,6 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
 
 #2)
 
@@ -403,3 +447,4 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
+"""

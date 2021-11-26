@@ -31,7 +31,7 @@ def loadrecay(recarray):
         recarray[x].names=input("Por favor, ingrese un nombre: ")
         recarray[x].surnames=input("Por favor, ingrese un apellido: ")
         recarray[x].theorical=float(input("Por favor, ingrese la nota teórica: "))
-        #recarray[x].practical=int(input("Por favor, ingrese la nota práctica: "))
+        recarray[x].practical=int(input("Por favor, ingrese la nota práctica: "))
 
 def disrecay(recarray):
     for j in range(len(recarray)):
@@ -42,5 +42,7 @@ def disrecay(recarray):
 
 loadrecay(recarray)
 disrecay(recarray)
+
+
 
 
