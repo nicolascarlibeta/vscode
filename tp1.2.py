@@ -209,8 +209,8 @@ while opcion!=0:
 """
 #4)
 
-cantidad_util=9
-array=[1,2,3,4,5,6,7,8,9,100,100,100,100,cantidad_util]
+cant=9
+array=[1,2,3,4,5,6,7,8,9,0,0,0,0,cant]
 
 def display_Array(array,cant):
     for x in range(cant):
@@ -219,7 +219,7 @@ def display_Array(array,cant):
 
 def a(array,entero):
     numero=int(input("¿Que número desea agregar al vector?: "))
-    if numero>=array[entero-1] and numero<=array[entero+1]:
+    if (numero>=array[entero-1] and numero<=array[entero+1]) or (entero==0 and numero<=array[entero+1]):
         array[entero]=numero
         if entero>=array[-1]:
             array[-1]=entero+1
@@ -228,7 +228,7 @@ def a(array,entero):
         print()
         print("Se han cargado exitosamente")
     else:
-        print("ERROR! El numero ingresado NO esta ordenado con el vector")
+        print("ERROR! El número ingresado NO esta ordenado con el vector")
 
 
 def b(array,entero):
@@ -250,21 +250,26 @@ def b(array,entero):
         print("ERROR! El elemento que desea borrar NO se encuentra dentro del vector")
 
 
-def i(array,entero):
-    posicion=int(input("¿En que posición desea insertar el elemento?: "))
-    ciclos=array[-1]-posicion 
-    posicion2=array[-1]
-    for x in range(ciclos):
-        switch=array[posicion2]
-        array[posicion2]=array[posicion2-1]
-        array[posicion2-1]=switch
-        posicion2=posicion2-1
+def insert(vector,entero):
+    posicion=int(input("Posición: "))
 
-    array[-1]=array[-1]+1
-    array[posicion]=entero
-    for x in range(array[-1]):
-        print(array[x],end=" ")
-    print()
+    if entero>=vector[posicion-1] and entero<=vector[posicion+1]:
+        posicion2=vector[-1]
+        while posicion!=posicion2:
+            switch=vector[posicion2]
+            vector[posicion2]=vector[posicion2-1]
+            vector[posicion2-1]=switch
+            posicion2=posicion2-1
+        
+        vector[-1]=vector[-1]+1
+        vector[posicion]=entero
+
+        for x in range(vector[-1]):
+            print(vector[x],end=" ")
+        print()
+    else:
+        print("ERROR!")
+
 
 
 def overdimension(array,accion,entero):
@@ -273,7 +278,7 @@ def overdimension(array,accion,entero):
     elif accion=="B":
         b(array,entero)
     elif accion=="I":
-        i(array,entero)
+        insert(array,entero)
 
 
 def main_Menu():
@@ -291,7 +296,7 @@ def buttons(opcion):
     if opcion=="1":
         display_Array(array,array[-1])
         print("Se han cargado exitosamente")  
-    elif opcion!=0:
+    else:
         entero=int(input("Ingrese un valor entero: "))
         overdimension(array,opcion,entero)
 
@@ -303,11 +308,11 @@ while opcion!=0:
     buttons(opcion)
     input("Presione Inter para continuar: ")
 
-"""
+
 #----------------------------------------------------------------
 #Ejercicios Adicionales
 
-
+"""
 #1)
 
 vec1=[15,13,9,4,2]

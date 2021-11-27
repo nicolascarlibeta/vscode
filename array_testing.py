@@ -147,8 +147,6 @@ print("Hay" ,cantidad3, "cantidad de números iguales a cero")
 """
 import numpy as np
 
-
-
 """
 esta=False
 while esta:
@@ -237,9 +235,48 @@ for x in range(11):
 
 """
 
-import random
+cant=7
+vector=[0,1,2,3,4,5,6,0,0,0,cant]
 
-baraja = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
-for i in range(1):
-     random.shuffle(baraja)
-     print(baraja)
+for x in range(cant):
+    print(vector[x],end=" ")
+print()
+
+input()
+
+def insert(vector):
+    elemento=int(input("Elemento a ingresar: "))
+    posicion=int(input("Posición: "))
+
+    if elemento>=vector[posicion-1] and elemento<=vector[posicion+1]:
+        posicion2=vector[-1]
+        while posicion!=posicion2:
+            switch=vector[posicion2]
+            vector[posicion2]=vector[posicion2-1]
+            vector[posicion2-1]=switch
+            posicion2=posicion2-1
+        
+        vector[-1]=vector[-1]+1
+        vector[posicion]=elemento
+
+        for x in range(vector[-1]):
+            print(vector[x],end=" ")
+        print()
+    else:
+        print("ERROR!")
+
+opcion=3
+while 2+2==4:
+    opcion=int(input("Enter: "))
+    if opcion==1:
+        insert(vector)
+
+"""posicion 6 - 1 ciclos
+posicion 6 - 1 ciclos
+posicion 5 - 2 ciclos
+posicion 4 - 3 ciclos
+posicion 3 - 4 ciclos
+posicion 2 - 5 ciclos
+posicion 1 - 6 ciclos
+posicion 0 - 7 ciclos
+"""
