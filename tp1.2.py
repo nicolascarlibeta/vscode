@@ -210,7 +210,7 @@ while opcion!=0:
 #4)
 
 cant=9
-array=[1,2,3,4,5,6,7,8,9,0,0,0,0,cant]
+array=[1,2,3,4,5,6,7,8,9,100,100,100,100,cant]
 
 def display_Array(array,cant):
     for x in range(cant):
@@ -219,7 +219,7 @@ def display_Array(array,cant):
 
 def a(array,entero):
     numero=int(input("¿Que número desea agregar al vector?: "))
-    if (numero>=array[entero-1] and numero<=array[entero+1]) or (entero==0 and numero<=array[entero+1]):
+    if ((numero>=array[entero-1]) and numero<=array[entero] and numero<=array[entero+1]) or (entero==0 and numero<=array[entero]):
         array[entero]=numero
         if entero>=array[-1]:
             array[-1]=entero+1
@@ -252,9 +252,8 @@ def b(array,entero):
 
 def insert(vector,entero):
     posicion=int(input("Posición: "))
-
-    if entero>=vector[posicion-1] and entero<=vector[posicion+1]:
-        posicion2=vector[-1]
+    posicion2=vector[-1]
+    if (entero<=vector[posicion] and entero>=vector[posicion-1] ) or (posicion==0 and entero<=vector[posicion]):
         while posicion!=posicion2:
             switch=vector[posicion2]
             vector[posicion2]=vector[posicion2-1]
@@ -268,7 +267,7 @@ def insert(vector,entero):
             print(vector[x],end=" ")
         print()
     else:
-        print("ERROR!")
+        print("ERROR! El número ingresado NO esta ordenado con el vector")
 
 
 
@@ -296,12 +295,12 @@ def buttons(opcion):
     if opcion=="1":
         display_Array(array,array[-1])
         print("Se han cargado exitosamente")  
-    else:
-        entero=int(input("Ingrese un valor entero: "))
+    elif opcion=="A" or opcion=="B" or opcion=="I":
+        entero=int(input("Elemento a agregar: "))
         overdimension(array,opcion,entero)
 
 opcion=5
-while opcion!=0:
+while opcion!="0":
     os.system("cls")
     main_Menu()
     opcion=input("Seleccione una opción (1-0): ").upper()
