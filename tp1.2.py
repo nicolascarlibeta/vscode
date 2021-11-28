@@ -206,7 +206,7 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""
+
 #4)
 
 cant=9
@@ -311,7 +311,7 @@ while opcion!="0":
 #----------------------------------------------------------------
 #Ejercicios Adicionales
 
-"""
+
 #1)
 
 vec1=[15,13,9,4,2]
@@ -367,9 +367,9 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
+"""
 
 #2)
-
 
 dockets=[0]*5
 notes=[0]*(len(dockets)*3)
@@ -451,4 +451,3 @@ while opcion!=0:
     opcion=int(input("Seleccione una opción (1-0): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
-"""

@@ -40,9 +40,5 @@ def disrecay(recarray):
         print("Nota teórica: ",recarray[j].theorical)
         print("Nota práctica: ",recarray[j].practical)
 
-loadrecay(recarray)
-disrecay(recarray)
-
-
-
-
+#loadrecay(recarray)
+#disrecay(recarray)
