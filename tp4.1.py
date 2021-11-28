@@ -75,14 +75,12 @@ def read_ac(cuentas):
 
 
 
-busqueda=1110
 def balance_inq(cuentas,busqueda):
     print("Su saldo actual es:  $",cuentas[busqueda-1000].sal)
 
 
 
 #Altas, Bajas y Modificaciones (ABM)
-
 
 def display_ac(cuentas,c):
     print()
@@ -93,18 +91,27 @@ def display_ac(cuentas,c):
     print("Tipo de Cuenta: ",cuentas[c].actype)
     print("Saldo:  $",cuentas[c].sal)
     
-    
+
 def register(cuentas):
     c=0
     cant=cuentas[-1].acnum
-    busqueda=input("Hola. Por favor, Ingrese su D.N.I.: ")
+    identity=input("Hola. Por favor, Ingrese su D.N.I.: ")
     termino=False
     while c<cant and not(termino):
-        if busqueda==cuentas[c].identity:
-            print()
-            print("El cliente ya tiene una cuenta registrada.")
-            print("Sus datos son los siguientes: ")
-            display_ac(cuentas,c)
+        if identity==cuentas[c].identity:
+            if cuentas[c].active==False:
+                print("La cuenta se encuentra actualmente DESACTIVADA. ¿Desea activarla?: ")
+                opcion=input("Seleccione una opción (S-N): ").upper()
+                if opcion=="S":
+                    cuentas[c].active=True
+                    print("La cuenta fue activada exitosamente")
+                
+            else:    
+                print()
+                print("El cliente ya tiene una cuenta registrada.")
+                print("Sus datos son los siguientes: ")
+                display_ac(cuentas,c)
+        
             termino=True
 
         c=c+1
@@ -114,26 +121,12 @@ def register(cuentas):
         cuentas[cant].acnum=cuentas[cant-1].acnum+1
         cuentas[cant].sur=input("Por favor, ingrese su apellido: ").upper()
         cuentas[cant].name=input("Por favor, ingrese su nombre: ").upper()
-        cuentas[cant].actype=int(input("Por favor, ingrese el tipo de cuenta: "))
-        cuentas[-1].acnum=cuentas[-1].acnum+1
+        cuentas[cant].identity=identity        
+        cuentas[cant].actype=int(input("Por favor, ingrese el tipo de cuenta (): "))
+        cuentas[-1].acnum=cuentas[-1].acnum+1    
+        display_ac(cuentas,cant)
+        print("La cuenta ha sido creada exitosamente")
             
-
-            
-         #   if cuentas[c].active==False:
-          #      print("La cuenta se encuentra actualmente DESACTIVADA. ¿Desea activarla?: ")
-           #     termino=True
-
-        
-
-
-                #opcion=input("Seleccione una opción (S-N): ").upper()
-                #if opcion=="S":
-                 #   cuentas[c].active=True
-                  #  print("La cuenta fue activada exitosamente")
-                #else:
-                 #   termino=True
-            #else:
-
 
 def cancellation(cuentas):
     busqueda=int(input("Por favor, ingrese el NÚMERO DE CUENTA que desea dar de baja: "))
@@ -157,6 +150,7 @@ def modification(cuentas):
     print("2. NOMBRE.")
     print("3. D.N.I..")
     print("4. TIPO DE CUENTA.")
+    print("0. Volver al menú principal.")
     print()
     opcion=int(input("Seleccione una opción (0-4): "))
     if opcion==1:
@@ -168,13 +162,13 @@ def modification(cuentas):
     elif opcion==4:
         cuentas[num].actype=int(input("Por favor, Ingrese el NUEVO Tipo de cuenta: "))
     
-    print("Estos son los datos actuales: ")
-    display_ac(cuentas,num)
-    print("La cuenta ha sido modificada exitosamente")
+    if opcion!=0:
+        print("Estos son los datos actuales: ")
+        display_ac(cuentas,num)
+        print("La cuenta ha sido modificada exitosamente")
 
-        
 
-        
+
 def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
@@ -184,29 +178,42 @@ def main_Menu():
     print("0. Salir.")
     print()
 
+def main_Menu_ABM():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Realizar un alta de cuenta.")
+    print("2. Realizar una baja de cuenta.")
+    print("3. Realizar una modificación en cuenta.")
+    print("0. Salir.")
+    print()
+
+def buttons_abm(opcion):
+    if opcion==1:
+        register(cuentas)
+    elif opcion==2:
+        cancellation(cuentas)
+    elif opcion==3:
+        modification(cuentas)
+
 def buttons(opcion):
-    #if opcion==1:
-     #   load_Array(dockets,notes) 
-      #  print("Se han cargado exitosamente")
-    #if opcion==2:
-     #   os.system("cls")
-      #  print("PLANILLA COMPLETA: ")
-       # display_Array(dockets,notes)   
-        #print("Se han cargado exitosamente")
-    if opcion==3:
-        print("Legajos","Promedio")
-        prmd=promedio(dockets,notes)
-        display_Array2(dockets,prmd)
-        print()
-        print("Se han cargado exitosamente")
-
-
+    if opcion==1:
+        busqueda=int(input("Hola, por favor Ingrese el NÚMERO DE CUENTA: "))
+        balance_inq(cuentas,busqueda)
+    elif opcion==3:
+        op_abm=5
+        while op_abm!=0:
+            os.system("cls")
+            main_Menu_ABM()
+            op_abm=int(input("Seleccione una opción (0-3): "))
+            buttons_abm(op_abm)
+            input("Presione Inter para continuar: ")
+        
 opcion=5
 read_ac(cuentas)
 while opcion!=0:
     os.system("cls")
     main_Menu()
-    opcion=int(input("Seleccione una opción (1-0): "))
+    opcion=int(input("Seleccione una opción (0-3): "))
     buttons(opcion)
     input("Presione Inter para continuar: ")
                     
