@@ -44,7 +44,7 @@ cajeros=np.array([atm]*120)
 def read_ac(cuentas):
     clientes=open("cuentas.txt","r")
     linea=clientes.readline().strip()
-    cant=600
+    cant=601
     for c in range(cant):
         s=linea.split(",")
         n=int(s[0])
@@ -73,7 +73,8 @@ def read_ac(cuentas):
 
     clientes.close()
 
-#Carga de vector de Cuentas
+
+#Carga de vector de Cajeros
 
 def read_atm(cajeros):
     caja=open("cajeros.txt","r")
@@ -109,21 +110,22 @@ def balance_inq(cuentas,busqueda):
         print("Su saldo actual es:  $",cuentas[busqueda].sal)
         print()
     else:
-        print("No tenemos registro de este número de cuenta en nuestro banco.")
+        print("El número de cuenta ingresado no se encuentra registrado.")
 
 
 
 #Corte de control
 
-def amount(cuentas):
+def control_cut(cuentas,cajeros):
     operaciones=open("operaciones.txt","r")
     linea=operaciones.readline().strip()
     s=linea.split(",")
     acnum=int(s[0])
+    cajero=np.array([0]*120)
     while linea!="":
         suma=0
         prev_acnum=acnum
-        c=prev_acnum-1000
+        j=prev_acnum-1000
         while acnum==prev_acnum and linea!="":
             a=int(s[1])
             m=int(s[2])
@@ -137,29 +139,36 @@ def amount(cuentas):
             else:
                 suma=suma-b
 
+            cajero[c-1]=cajero[c-1]+1 #Mayor cajero
+
             linea=operaciones.readline().strip()
             if linea!="":
                 s=linea.split(",")
                 acnum=int(s[0])
-
-        cuentas[c].sal=cuentas[c].sal+suma
+        
+        cuentas[j].sal=cuentas[j].sal+suma #Actualizar saldo
         print("Número de Cuenta: ",prev_acnum)
         print("Total anual:  $",suma)
         print()
 
-        c=c+1
+
+    mayor=cajero[0]  
+    atmnum=0
+    for j in range(len(cajero)):
+        if cajero[j]>mayor:
+            mayor=cajero[j]  #Mayor cajero 2
+            atmnum=j+1
+
+
+    for k in range(len(cajero)):
+        cajeros[k].mov=cajeros[k].mov+cajero[k]
+
+    print(cajeros[96].mov)
+
 
     operaciones.close()
 
 
-
-def amount_mov():
-    operaciones=open("operaciones.txt","r")
-    linea=operaciones.readline().strip()
-    s=linea.split(",")
-    acnum=int(s[0])
-    while linea!="":
-        2
 
 
 #Altas, Bajas y Modificaciones (ABM)
@@ -281,6 +290,8 @@ def buttons(opcion):
     if opcion==1:
         busqueda=int(input("Hola, por favor Ingrese el NÚMERO DE CUENTA: "))
         balance_inq(cuentas,busqueda)
+    elif opcion==2:
+        control_cut(cuentas,cajeros)
     elif opcion==3:
         op_abm=5
         while op_abm!=0:
@@ -288,11 +299,10 @@ def buttons(opcion):
             main_Menu_ABM()
             op_abm=int(input("Seleccione una opción (0-3): "))
             buttons_abm(op_abm)
-    elif opcion==5:
-        amount(cuentas)
         
 opcion=5
 read_ac(cuentas)
+read_atm(cajeros)
 while opcion!=0:
     os.system("cls")
     main_Menu()
