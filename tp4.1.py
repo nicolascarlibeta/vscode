@@ -38,13 +38,14 @@ atm=regb
 
 cuentas=np.array([ac]*610)
 cajeros=np.array([atm]*120)
+vector=np.array([0]*120)
 
 #Carga de vector de Cuentas
 
 def read_ac(cuentas):
     clientes=open("cuentas.txt","r")
     linea=clientes.readline().strip()
-    cant=601
+    cant=600
     for c in range(cant):
         s=linea.split(",")
         n=int(s[0])
@@ -121,7 +122,6 @@ def control_cut(cuentas,cajeros):
     linea=operaciones.readline().strip()
     s=linea.split(",")
     acnum=int(s[0])
-    cajero=np.array([0]*120)
     while linea!="":
         suma=0
         prev_acnum=acnum
@@ -139,36 +139,34 @@ def control_cut(cuentas,cajeros):
             else:
                 suma=suma-b
 
-            cajero[c-1]=cajero[c-1]+1 #Mayor cajero
+            vector[c-1]=vector[c-1]+1 
 
             linea=operaciones.readline().strip()
             if linea!="":
                 s=linea.split(",")
                 acnum=int(s[0])
         
-        cuentas[j].sal=cuentas[j].sal+suma #Actualizar saldo
+        cuentas[j].sal=cuentas[j].sal+suma 
         print("Número de Cuenta: ",prev_acnum)
         print("Total anual:  $",suma)
         print()
+        input("Presione Inter para continuar: ")
 
-
-    mayor=cajero[0]  
-    atmnum=0
-    for j in range(len(cajero)):
-        if cajero[j]>mayor:
-            mayor=cajero[j]  #Mayor cajero 2
-            atmnum=j+1
-
-
-    for k in range(len(cajero)):
-        cajeros[k].mov=cajeros[k].mov+cajero[k]
-
-    print(cajeros[96].mov)
-
+    for l in range(len(vector)):
+        cajeros[l].mov=cajeros[l].mov+vector[l]
 
     operaciones.close()
 
 
+def amount_mov(vector):
+    mayor=vector[0]  
+    atmnum=0
+    for j in range(len(vector)):
+        if vector[j]>mayor:
+            mayor=vector[j] 
+            atmnum=j+1
+
+    return atmnum
 
 
 #Altas, Bajas y Modificaciones (ABM)
@@ -181,6 +179,7 @@ def display_ac(cuentas,c):
     print("D.N.I.: ",cuentas[c].identity)
     print("Tipo de Cuenta: ",cuentas[c].actype)
     print("Saldo:  $",cuentas[c].sal)
+    print()
     
 
 def register(cuentas):
@@ -196,13 +195,15 @@ def register(cuentas):
                 if opcion=="S":
                     cuentas[c].active=True
                     print("La cuenta fue activada exitosamente")
-                
+                    input("Presione Inter para continuar: ")
             else:    
                 print()
                 print("El cliente ya tiene una cuenta registrada.")
                 print("Sus datos son los siguientes: ")
                 display_ac(cuentas,c)
-        
+                input("Presione Inter para continuar: ")
+
+    
             termino=True
 
         c=c+1
@@ -217,15 +218,19 @@ def register(cuentas):
         cuentas[-1].acnum=cuentas[-1].acnum+1    
         display_ac(cuentas,cant)
         print("La cuenta ha sido creada exitosamente")
+        input("Presione Inter para continuar: ")
+
             
 
 def cancellation(cuentas):
     busqueda=int(input("Por favor, ingrese el NÚMERO DE CUENTA que desea dar de baja: "))
     if cuentas[busqueda-1000].active==False:
         print("Esta cuenta ya se encuentra ACTUALMENTE dada de baja")
+        input("Presione Inter para continuar: ")
     else:
         cuentas[busqueda-1000].active=False
         print("La cuenta N° "+str(busqueda)+" ("+str(cuentas[busqueda-1000].sur)+", "+str(cuentas[busqueda-1000].name)+")"+" fue desactivada exitosamente")
+        input("Presione Inter para continuar: ")
 
 
 def modification(cuentas):
@@ -257,6 +262,7 @@ def modification(cuentas):
         print("Estos son los datos actuales: ")
         display_ac(cuentas,num)
         print("La cuenta ha sido modificada exitosamente")
+        input("Presione Inter para continuar: ")
 
 
 
@@ -264,7 +270,7 @@ def main_Menu():
     print("***MENU PRINCIPAL***")
     print()
     print("1. Consulta de Saldo.")
-    print("2. Mostrar legajos y notas correspondientes.")
+    print("2. Actualización de Cuentas y Cajeros.")
     print("3. Realizar ABM sobre CUENTAS.")
     print("0. Salir.")
     print()
@@ -277,6 +283,25 @@ def main_Menu_ABM():
     print("3. Realizar una modificación en cuenta.")
     print("0. Salir.")
     print()
+
+def main_Menu_CC():
+    print("***MENU PRINCIPAL***")
+    print()
+    print("1. Informar el total anual (en $) de los movimientos de cada cuenta.")
+    print("2. Informar que cajero registró mayor cantidad de movimientos durante el año.")
+    print("0. Salir.")
+    print()
+
+
+def buttons_cc(opcion,vector):
+    if opcion==1:
+        control_cut(cuentas,cajeros)
+    if opcion==2:
+        mayor=amount_mov(vector)
+        print("El cajero que registro mayor cantidad de movimientos en total es el Cajero N°"+str(mayor))
+        input("Presione Inter para continuar: ")
+
+
 
 def buttons_abm(opcion):
     if opcion==1:
@@ -291,7 +316,12 @@ def buttons(opcion):
         busqueda=int(input("Hola, por favor Ingrese el NÚMERO DE CUENTA: "))
         balance_inq(cuentas,busqueda)
     elif opcion==2:
-        control_cut(cuentas,cajeros)
+        op_cc=5
+        while op_cc!=0:
+            os.system("cls")
+            main_Menu_CC()
+            op_cc=int(input("Seleccione una opción (0-2): "))
+            buttons_cc(op_cc,vector)
     elif opcion==3:
         op_abm=5
         while op_abm!=0:
